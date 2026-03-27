@@ -36,8 +36,8 @@ section{padding:4rem 0}
 .pill-btn{font-family:var(--fh);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:.45rem 1rem;cursor:pointer;position:relative;transition:transform .15s}
 .pill-btn:hover{transform:translateY(-2px)}
 .pill-btn::after{content:'';position:absolute;inset:0;background:var(--black);z-index:-1;transform:translate(4px,4px)}
-.pill-btn--outline{background:transparent;color:var(--white);border-color:var(--white)}
-.pill-btn--outline::after{background:var(--white)}
+.pill-btn--outline{background:rgba(255,255,255,.12);color:var(--white);border-color:var(--white)}
+.pill-btn--outline::after{display:none}
 
 /* ===== HERO ===== */
 .hero{background:var(--gray-900);color:var(--white);padding:5rem 0 4rem;border-bottom:var(--bw) solid var(--black)}
