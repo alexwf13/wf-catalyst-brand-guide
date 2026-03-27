@@ -38,6 +38,8 @@ section{padding:4rem 0}
 .pill-btn::after{content:'';position:absolute;inset:0;background:var(--black);z-index:-1;transform:translate(4px,4px)}
 .pill-btn--outline{background:rgba(255,255,255,.12);color:var(--white);border-color:var(--white)}
 .pill-btn--outline::after{display:none}
+.top-bar .pill-btn::after{display:none}
+.top-bar .pill-btn:hover{transform:none;opacity:.85}
 
 /* ===== HERO ===== */
 .hero{background:var(--gray-900);color:var(--white);padding:5rem 0 4rem;border-bottom:var(--bw) solid var(--black)}
