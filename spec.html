@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF Catalyst — Brand System Spec</title>
+  <meta name="description" content="Полная спецификация бренд-системы WF Catalyst для дизайнеров и разработчиков.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family:'Neutro'; src:url('fonts/Neutro-Bold.otf') format('opentype'); font-weight:700; font-display:swap; }
+    :root {
+      --brand-700:#198ED5; --brand-900:#0265A1; --brand-400:#93D1F7; --brand-200:#C4E8FE; --brand-050:#EFF5F9;
+      --black:#000; --gray-900:#282828; --gray-700:#565656; --gray-500:#989898; --gray-100:#EBEBEB; --white:#FFF;
+      --yellow:#FCD84D; --green:#00B176; --red:#FD4E2C;
+      --bw:3px; --rad:0px; --pill:27px;
+      --fh:'Neutro',Impact,'Arial Black',sans-serif; --fb:'Inter',system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--fb);font-weight:400;line-height:1.6;color:var(--black);background:var(--brand-050)}
+
+    /* Layout */
+    .wrap{max-width:900px;margin:0 auto;padding:2rem}
+
+    /* Header */
+    .spec-header{background:var(--black);color:var(--white);padding:3rem 2rem;border-bottom:var(--bw) solid var(--black);text-align:center}
+    .spec-header h1{font-family:var(--fh);font-size:2.5rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+    .spec-header p{font-size:1rem;opacity:.8;max-width:60ch;margin:0 auto}
+    .spec-header .tag{display:inline-block;font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;padding:.3rem .8rem;border:2px solid var(--white);border-radius:var(--pill);margin-top:1rem;color:var(--white)}
+    .spec-header .tag--blue{background:var(--brand-700);border-color:var(--brand-700)}
+
+    /* Sections */
+    .spec-section{padding:2.5rem 0;border-bottom:1px solid var(--gray-100)}
+    .spec-section:last-child{border-bottom:none}
+    .sec-num{font-family:var(--fh);font-size:3rem;color:var(--brand-200);line-height:1;margin-right:.75rem;float:left}
+    .sec-title{font-family:var(--fh);font-size:1.4rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1.5rem;padding-top:.5rem}
+    .subsec{font-family:var(--fb);font-weight:600;font-size:1rem;margin:1.5rem 0 .75rem;color:var(--brand-900)}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1.5rem}
+    th,td{text-align:left;padding:.55rem .75rem;border:2px solid var(--black)}
+    th{background:var(--brand-700);color:var(--white);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+    td{background:var(--white)}
+    code{font-family:'SF Mono','Fira Code',monospace;font-size:.8rem;background:var(--brand-050);color:var(--brand-900);padding:.1rem .3rem}
+
+    /* Swatches */
+    .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+    .sw{border:var(--bw) solid var(--black);overflow:hidden}
+    .sw__c{height:70px}
+    .sw__i{background:var(--white);padding:.5rem;font-size:.75rem}
+    .sw__n{font-weight:600;margin-bottom:.1rem}
+    .sw__h{font-family:'SF Mono',monospace;font-size:.75rem;color:var(--gray-700)}
+
+    /* Cards */
+    .card{background:var(--white);border:var(--bw) solid var(--black);padding:1.25rem;margin-bottom:1rem}
+
+    /* Do/Don't */
+    .dd{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+    .do-c,.dont-c{border:var(--bw) solid var(--black);padding:1.25rem}
+    .do-c{background:var(--green);color:var(--black)}
+    .dont-c{background:var(--red);color:var(--white)}
+    .do-c h4,.dont-c h4{font-family:var(--fh);font-size:1rem;text-transform:uppercase;margin-bottom:.6rem}
+    .do-c ul,.dont-c ul{list-style:none;padding:0}
+    .do-c li,.dont-c li{padding:.25rem 0;font-size:.82rem;font-weight:500}
+    .do-c li::before{content:'✓ ';font-weight:700}
+    .dont-c li::before{content:'✕ ';font-weight:700}
+
+    /* Button demo */
+    .btn-demo{display:inline-block;font-family:var(--fh);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:.7rem 1.8rem;box-shadow:6px 6px 0 var(--black);margin:.5rem .75rem .5rem 0;cursor:default}
+    .pill-demo{display:inline-block;font-family:var(--fh);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .7rem;border:2px solid var(--black);border-radius:var(--pill);margin:.3rem .4rem .3rem 0}
+    .sec-cta-demo{display:inline-block;font-family:var(--fh);font-size:.7rem;font-weight:700;text-transform:uppercase;padding:.5rem 1.2rem;border:2px solid var(--black);border-radius:32px;margin:.5rem .75rem .5rem 0;cursor:default}
+
+    /* Theme preview */
+    .tp{border:var(--bw) solid var(--black);overflow:hidden;margin-bottom:1rem}
+    .tp__h{font-family:var(--fh);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;padding:.7rem 1rem;border-bottom:var(--bw) solid var(--black)}
+    .tp__b{padding:1rem}
+    .tp__card{padding:.7rem;border:3px solid;margin-bottom:.5rem}
+
+    /* Code block */
+    .cb{background:var(--gray-900);color:var(--brand-200);border:var(--bw) solid var(--black);padding:1.25rem;overflow-x:auto;font-family:'SF Mono','Fira Code',monospace;font-size:.78rem;line-height:1.7;margin-bottom:1.5rem;white-space:pre}
+
+    /* Principles */
+    .pr{counter-reset:pr;list-style:none;padding:0}
+    .pr li{counter-increment:pr;padding:.5rem 0 .5rem 2.2rem;font-size:.88rem;position:relative}
+    .pr li::before{content:counter(pr);position:absolute;left:0;font-family:var(--fh);font-size:1rem;color:var(--brand-700);font-weight:700}
+
+    /* Prompt */
+    .prompt{background:var(--brand-700);color:var(--white);border:var(--bw) solid var(--black);padding:1.5rem;font-size:.88rem;line-height:1.6;margin-bottom:1.5rem}
+
+    /* Footnotes */
+    .note{background:var(--brand-200);border:var(--bw) solid var(--black);padding:1rem;font-size:.85rem;margin:1rem 0}
+
+    /* Print */
+    @media print{
+      body{background:#fff;color:#000}
+      .spec-header{background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      th{background:var(--brand-700);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .sw__c,.do-c,.dont-c,.prompt,.note{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .spec-section{break-inside:avoid}
+    }
+
+    /* Footer */
+    footer{background:var(--black);color:var(--white);text-align:center;padding:1.5rem;font-size:.8rem;border-top:var(--bw) solid var(--brand-700)}
+    footer span{color:var(--brand-400)}
+
+    @media(max-width:768px){
+      .dd{grid-template-columns:1fr}
+      .sg{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="spec-header">
+  <h1>WF Catalyst</h1>
+  <p>Brand Design System — полная спецификация для дизайнеров и разработчиков</p>
+  <span class="tag tag--blue">Neo-Brutalism</span>
+</div>
+
+<div class="wrap">
+
+<!-- 1. SUMMARY -->
+<div class="spec-section">
+  <span class="sec-num">01</span>
+  <div class="sec-title">Обзор системы</div>
+  <div style="clear:both"></div>
+  <div class="card">
+    <p>WF Catalyst использует <strong>жёсткую, высококонтрастную, модульную</strong> визуальную систему:</p>
+    <ul style="margin:.75rem 0 0 1.2rem;font-size:.9rem">
+      <li>Чёрные бордеры <code>3px</code> на всём</li>
+      <li>Плоские заливки, без градиентов</li>
+      <li>Блочная композиция с чёткими секциями/карточками</li>
+      <li>Геометрические заголовки верхним регистром (Neutro Bold)</li>
+      <li>Синий <code>#198ED5</code> — основной сигнал бренда</li>
+      <li>Жёлтый <code>#FCD84D</code> — цвет CTA</li>
+      <li>Тёмная/светлая темы с одинаковыми правилами</li>
+      <li><code>border-radius: 0</code> на всех блоках (pill только на тегах/бейджах)</li>
+    </ul>
+    <p style="margin-top:.75rem;font-style:italic;font-size:.85rem;color:var(--gray-700)">Стиль: прямой, смелый, чистый, операционный — немного агрессивный в хорошем смысле.</p>
+  </div>
+</div>
+
+<!-- 2. COLORS -->
+<div class="spec-section">
+  <span class="sec-num">02</span>
+  <div class="sec-title">Цветовая палитра</div>
+  <div style="clear:both"></div>
+
+  <div class="subsec">2.1 Core Blue Scale</div>
+  <div class="sg">
+    <div class="sw"><div class="sw__c" style="background:#198ED5"></div><div class="sw__i"><div class="sw__n">brand-700</div><div class="sw__h">#198ED5</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#0265A1"></div><div class="sw__i"><div class="sw__n">brand-900</div><div class="sw__h">#0265A1</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#93D1F7"></div><div class="sw__i"><div class="sw__n">brand-400</div><div class="sw__h">#93D1F7</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#C4E8FE"></div><div class="sw__i"><div class="sw__n">brand-200</div><div class="sw__h">#C4E8FE</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#EFF5F9"></div><div class="sw__i"><div class="sw__n">brand-050</div><div class="sw__h">#EFF5F9</div></div></div>
+  </div>
+
+  <div class="subsec">2.2 Monochrome</div>
+  <div class="sg">
+    <div class="sw"><div class="sw__c" style="background:#000"></div><div class="sw__i"><div class="sw__n">black</div><div class="sw__h">#000000</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#282828"></div><div class="sw__i"><div class="sw__n">gray-900</div><div class="sw__h">#282828</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#565656"></div><div class="sw__i"><div class="sw__n">gray-700</div><div class="sw__h">#565656</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#989898"></div><div class="sw__i"><div class="sw__n">gray-500</div><div class="sw__h">#989898</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#EBEBEB"></div><div class="sw__i"><div class="sw__n">gray-100</div><div class="sw__h">#EBEBEB</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#FFF"></div><div class="sw__i"><div class="sw__n">white</div><div class="sw__h">#FFFFFF</div></div></div>
+  </div>
+
+  <div class="subsec">2.3 Accent / Semantic</div>
+  <div class="sg">
+    <div class="sw"><div class="sw__c" style="background:#FCD84D"></div><div class="sw__i"><div class="sw__n">yellow</div><div class="sw__h">#FCD84D</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">CTA / Warning</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#00B176"></div><div class="sw__i"><div class="sw__n">green</div><div class="sw__h">#00B176</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Success</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#FD4E2C"></div><div class="sw__i"><div class="sw__n">red</div><div class="sw__h">#FD4E2C</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Error</div></div></div>
+  </div>
+
+  <div class="note">
+    <strong>Правило:</strong> Вспомогательные цвета (<code>#C4E8FE</code>, <code>#198ED5</code>, <code>#0265A1</code>) — <strong>не более ~10%</strong> визуальной площади. Акценты (жёлтый, зелёный, красный) — только для семантических состояний.
+  </div>
+</div>
+
+<!-- 3. THEMES -->
+<div class="spec-section">
+  <span class="sec-num">03</span>
+  <div class="sec-title">Темы</div>
+  <div style="clear:both"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+    <div class="tp">
+      <div class="tp__h" style="background:#000;color:#fff">Light (по умолчанию)</div>
+      <div class="tp__b" style="background:#EFF5F9">
+        <div class="tp__card" style="background:#FFF;color:#000;border-color:#000">Карточка на светлом фоне</div>
+        <div style="font-size:.78rem"><strong>Фон:</strong> #EFF5F9 &nbsp; <strong>Карточка:</strong> #FFFFFF &nbsp; <strong>Текст:</strong> #000000</div>
+      </div>
+    </div>
+    <div class="tp">
+      <div class="tp__h" style="background:var(--brand-700);color:#fff">Dark</div>
+      <div class="tp__b" style="background:#282828">
+        <div class="tp__card" style="background:#000;color:#FFF;border-color:#FFF">Карточка на тёмном фоне</div>
+        <div style="font-size:.78rem;color:#fff"><strong>Фон:</strong> #282828 &nbsp; <strong>Карточка:</strong> #000000 &nbsp; <strong>Текст:</strong> #FFFFFF</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Параметр</th><th>Light</th><th>Dark</th></tr>
+    <tr><td>Фон страницы</td><td><code>#EFF5F9</code></td><td><code>#282828</code></td></tr>
+    <tr><td>Поверхность (карточки)</td><td><code>#FFFFFF</code></td><td><code>#000000</code></td></tr>
+    <tr><td>Основной текст</td><td><code>#000000</code></td><td><code>#FFFFFF</code></td></tr>
+    <tr><td>Вторичный текст</td><td><code>#565656</code></td><td><code>#FFFFFF</code></td></tr>
+    <tr><td>Бордеры</td><td><code>#000000</code></td><td><code>#000000</code> / <code>#FFFFFF</code></td></tr>
+  </table>
+</div>
+
+<!-- 4. TYPOGRAPHY -->
+<div class="spec-section">
+  <span class="sec-num">04</span>
+  <div class="sec-title">Типографика</div>
+  <div style="clear:both"></div>
+
+  <div class="subsec">Шрифтовой стек</div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <div style="font-family:var(--fh);font-size:2rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:.25rem">Neutro Bold — заголовки, CTA</div>
+    <div style="font-family:var(--fb);font-size:1rem;line-height:1.6;color:var(--gray-700)">Inter Regular / Semi Bold — body, подписи, UI</div>
+  </div>
+
+  <div class="subsec">Типографическая шкала</div>
+  <table>
+    <tr><th>Токен</th><th>Шрифт</th><th>Вес</th><th>Размер</th><th>Интерлиньяж</th><th>Применение</th></tr>
+    <tr><td><code>h1</code></td><td>Neutro</td><td>700</td><td>120px</td><td>120px (1.0)</td><td>Hero, заголовок страницы</td></tr>
+    <tr><td><code>h2</code></td><td>Neutro</td><td>700</td><td>70px</td><td>80px (1.14)</td><td>Заголовки секций</td></tr>
+    <tr><td><code>h3</code></td><td>Neutro</td><td>700</td><td>50px</td><td>60px (1.2)</td><td>Подзаголовки, карточки</td></tr>
+    <tr><td><code>subtitle</code></td><td>Neutro</td><td>700</td><td>60px</td><td>76px (1.26)</td><td>Подзаголовок баннера</td></tr>
+    <tr><td><code>body-lg</code></td><td>Inter</td><td>400</td><td>38px</td><td>46px (1.21)</td><td>Крупный параграф</td></tr>
+    <tr><td><code>body-md</code></td><td>Inter</td><td>400</td><td>32px</td><td>42px (1.31)</td><td>Средний параграф</td></tr>
+    <tr><td><code>body</code></td><td>Inter</td><td>400</td><td>24px</td><td>32px (1.33)</td><td>Основной текст</td></tr>
+    <tr><td><code>section-label</code></td><td>Inter</td><td>600</td><td>50px</td><td>50px (1.0)</td><td>Название секции</td></tr>
+    <tr><td><code>caption</code></td><td>Inter</td><td>400</td><td>16px</td><td>24px (1.5)</td><td>Сноски, хелпер</td></tr>
+    <tr><td><code>label</code></td><td>Inter</td><td>500</td><td>20px</td><td>20px (1.0)</td><td>Подписи цветов, теги</td></tr>
+    <tr><td><code>button</code></td><td>Neutro</td><td>700</td><td>20px</td><td>24px (1.2)</td><td>Кнопки, CTA</td></tr>
+    <tr><td><code>tag</code></td><td>Neutro</td><td>700</td><td>18px</td><td>18px (1.0)</td><td>Бейджи</td></tr>
+  </table>
+</div>
+
+<!-- 5. BORDERS & SHADOW -->
+<div class="spec-section">
+  <span class="sec-num">05</span>
+  <div class="sec-title">Бордеры, тени, углы</div>
+  <div style="clear:both"></div>
+
+  <table>
+    <tr><th>Свойство</th><th>Значение</th></tr>
+    <tr><td>Border width</td><td><code>3px</code></td></tr>
+    <tr><td>Border color</td><td><code>#000000</code></td></tr>
+    <tr><td>Border radius</td><td><code>0px</code> (все блоки)</td></tr>
+    <tr><td>Pill radius</td><td><code>27px</code> (только теги/бейджи)</td></tr>
+    <tr><td>Divider</td><td><code>1px solid #989898</code></td></tr>
+    <tr><td>Hard shadow</td><td><code>6px 6px 0px #000000</code> (вправо-вниз, без blur)</td></tr>
+  </table>
+
+  <div class="note">
+    Тень используется <strong>только</strong> на кнопках и ключевых интерактивных элементах. Карточки по умолчанию без тени.
+  </div>
+</div>
+
+<!-- 6. BUTTONS -->
+<div class="spec-section">
+  <span class="sec-num">06</span>
+  <div class="sec-title">Кнопки и элементы</div>
+  <div style="clear:both"></div>
+
+  <div class="subsec">6.1 Primary CTA</div>
+  <div style="margin-bottom:1rem">
+    <span class="btn-demo">START A PROJECT</span>
+  </div>
+  <table>
+    <tr><th>Свойство</th><th>Значение</th></tr>
+    <tr><td>Background</td><td><code>#FCD84D</code></td></tr>
+    <tr><td>Border</td><td><code>3px solid #000000</code></td></tr>
+    <tr><td>Border-radius</td><td><code>0px</code></td></tr>
+    <tr><td>Shadow</td><td><code>6px 6px 0px #000000</code></td></tr>
+    <tr><td>Font</td><td>Neutro Bold 700, 20px/24px</td></tr>
+    <tr><td>Text</td><td><code>#000000</code>, uppercase</td></tr>
+    <tr><td>Min height</td><td>56px</td></tr>
+  </table>
+
+  <div class="subsec">6.2 Pill Tag / Badge</div>
+  <div style="margin-bottom:1rem">
+    <span class="pill-demo" style="background:var(--brand-200)">BRAND</span>
+    <span class="pill-demo" style="background:var(--brand-700);color:#fff;border-color:var(--brand-700)">ACTIVE</span>
+    <span class="pill-demo" style="background:var(--yellow)">NEW</span>
+  </div>
+  <table>
+    <tr><th>Свойство</th><th>Значение</th></tr>
+    <tr><td>Border</td><td><code>~1.75px solid #000</code></td></tr>
+    <tr><td>Radius</td><td><code>27px</code> (pill)</td></tr>
+    <tr><td>Font</td><td>Neutro Bold 700, 18px</td></tr>
+    <tr><td>Padding</td><td>12px 27px</td></tr>
+  </table>
+
+  <div class="subsec">6.3 Secondary CTA (Rounded)</div>
+  <div style="margin-bottom:1rem">
+    <span class="sec-cta-demo" style="background:var(--yellow)">LEARN MORE</span>
+    <span class="sec-cta-demo" style="background:var(--brand-900);color:#fff">GET STARTED</span>
+  </div>
+  <table>
+    <tr><th>Свойство</th><th>Значение</th></tr>
+    <tr><td>Background</td><td><code>#FCD84D</code> или <code>#0265A1</code></td></tr>
+    <tr><td>Border</td><td><code>~2px solid #000</code></td></tr>
+    <tr><td>Radius</td><td><code>32px</code> (pill)</td></tr>
+    <tr><td>Font</td><td>Neutro Bold 700, 21px</td></tr>
+  </table>
+</div>
+
+<!-- 7. USAGE RULES -->
+<div class="spec-section">
+  <span class="sec-num">07</span>
+  <div class="sec-title">Правила использования цветов</div>
+  <div style="clear:both"></div>
+
+  <table>
+    <tr><th>Элемент</th><th>Цвет(а)</th></tr>
+    <tr><td>Основной цвет сайта</td><td><code>#198ED5</code></td></tr>
+    <tr><td>Фон страницы (light)</td><td><code>#EFF5F9</code></td></tr>
+    <tr><td>Фон страницы (dark)</td><td><code>#282828</code></td></tr>
+    <tr><td>Карточки / панели</td><td><code>#FFFFFF</code></td></tr>
+    <tr><td>Акцентная панель</td><td><code>#93D1F7</code></td></tr>
+    <tr><td>Бордеры</td><td><code>#000000</code></td></tr>
+    <tr><td>Кнопки CTA</td><td><code>#FCD84D</code></td></tr>
+    <tr><td>Success</td><td><code>#00B176</code></td></tr>
+    <tr><td>Warning</td><td><code>#FCD84D</code></td></tr>
+    <tr><td>Error</td><td><code>#FD4E2C</code></td></tr>
+    <tr><td>Заголовки (light)</td><td><code>#000000</code></td></tr>
+    <tr><td>Заголовки (dark)</td><td><code>#FFFFFF</code></td></tr>
+    <tr><td>Вторичный текст (light)</td><td><code>#565656</code></td></tr>
+    <tr><td>Вторичный текст (dark)</td><td><code>#FFFFFF</code> (fallback: <code>#EBEBEB</code>)</td></tr>
+  </table>
+</div>
+
+<!-- 8. DO/DON'T -->
+<div class="spec-section">
+  <span class="sec-num">08</span>
+  <div class="sec-title">Do / Don't</div>
+  <div style="clear:both"></div>
+
+  <div class="dd">
+    <div class="do-c">
+      <h4>✅ DO</h4>
+      <ul>
+        <li>Плоские заливки</li>
+        <li>Чёрные бордеры 3px на всём</li>
+        <li>border-radius: 0</li>
+        <li>Жёсткая тень <code>6px 6px 0</code></li>
+        <li>UPPERCASE Neutro для заголовков</li>
+        <li>Цвета строго по токенам</li>
+        <li>Высокий контраст ≥ 4.5:1</li>
+        <li>Модульная сетка</li>
+      </ul>
+    </div>
+    <div class="dont-c">
+      <h4>❌ DON'T</h4>
+      <ul>
+        <li>Градиенты</li>
+        <li>Мягкие тени / drop shadow / glow</li>
+        <li>Скруглённые углы (кроме pill)</li>
+        <li>Тонкие серые бордеры</li>
+        <li>Пастельные макеты без чёрной структуры</li>
+        <li>Glassmorphism</li>
+        <li>Rounded friendly SaaS-стиль</li>
+        <li>Много акцентных цветов в одном блоке</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 9. COMPOSITION -->
+<div class="spec-section">
+  <span class="sec-num">09</span>
+  <div class="sec-title">Композиция</div>
+  <div style="clear:both"></div>
+
+  <div class="subsec">Иерархия контраста</div>
+  <div style="margin-bottom:1rem">
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:#fff">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">1</span>
+      <span style="flex:1">Структура</span>
+      <span style="font-family:monospace;font-size:.75rem">#000 / #FFF</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--brand-700);color:#fff">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">2</span>
+      <span style="flex:1">Бренд</span>
+      <span style="font-family:monospace;font-size:.75rem">#198ED5</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--brand-400)">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">3</span>
+      <span style="flex:1">Вторичный акцент</span>
+      <span style="font-family:monospace;font-size:.75rem">#93D1F7 / #C4E8FE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--yellow)">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">4</span>
+      <span style="flex:1">Действие</span>
+      <span style="font-family:monospace;font-size:.75rem">#FCD84D</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;font-weight:600;background:var(--green)">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">5</span>
+      <span style="flex:1">Семантика</span>
+      <span style="font-family:monospace;font-size:.75rem">green / red</span>
+    </div>
+  </div>
+
+  <div class="subsec">Прогрессия цветов для графиков</div>
+  <div style="display:flex;border:3px solid #000;overflow:hidden;margin-bottom:1rem">
+    <div style="flex:1;height:50px;background:#C4E8FE;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600">#C4E8FE</div>
+    <div style="flex:1;height:50px;background:#93D1F7;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600">#93D1F7</div>
+    <div style="flex:1;height:50px;background:#198ED5;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600;color:#fff">#198ED5</div>
+    <div style="flex:1;height:50px;background:#0265A1;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600;color:#fff">#0265A1</div>
+  </div>
+
+  <div class="subsec">Паттерны макетов</div>
+  <div class="card">
+    <p><strong>Hero Section:</strong> Белая карточка с 3px чёрным бордером. Слева: заголовок (Neutro) + текст (Inter) + CTA. Справа: чёрный фон с перекрывающим блоком (белый или синий #93D1F7).</p>
+    <p style="margin-top:.5rem"><strong>Two-Column Card:</strong> Равные колонки с бордером. Опционально: тёмная левая с белым текстом.</p>
+    <p style="margin-top:.5rem"><strong>Full-Dark Card:</strong> Фон #000, текст #FFF, графика с синей шкалой, жёлтый CTA с тенью.</p>
+  </div>
+</div>
+
+<!-- 10. PRINCIPLES -->
+<div class="spec-section">
+  <span class="sec-num">10</span>
+  <div class="sec-title">Принципы дизайна</div>
+  <div style="clear:both"></div>
+
+  <ol class="pr">
+    <li><strong>Neo-brutalism:</strong> Жёсткие чёрные бордеры на всём. Без мягких теней, градиентов, скруглений (кроме pill).</li>
+    <li><strong>Высокий контраст:</strong> Чёрные бордеры #000 по 3px на всех карточках, кнопках и блоках.</li>
+    <li><strong>Жёсткие тени:</strong> Кнопки и ключевые элементы — сплошной чёрный прямоугольник (~6px, без blur).</li>
+    <li><strong>Смелая типографика:</strong> Neutro Bold для всех заголовков — uppercase, геометрический, индустриальный.</li>
+    <li><strong>Чистый body-текст:</strong> Inter для всего основного текста — современный, читабельный, нейтральный.</li>
+    <li><strong>Палитра на базе синего:</strong> Основная визуальная идентичность — #198ED5 с 5-ступенчатой шкалой.</li>
+    <li><strong>Жёлтый CTA:</strong> Основной call-to-action всегда жёлтый #FCD84D с чёрным текстом и тенью.</li>
+    <li><strong>Акценты умеренно:</strong> Оранжевый, жёлтый, зелёный — только семантика, ≤10% площади.</li>
+    <li><strong>Две темы:</strong> Полная поддержка light/dark с чёткими переключениями токенов.</li>
+    <li><strong>Геометрические макеты:</strong> Карточки, блоки и секции — прямоугольные, строгая сетка.</li>
+  </ol>
+</div>
+
+<!-- 11. AI PROMPT -->
+<div class="spec-section">
+  <span class="sec-num">11</span>
+  <div class="sec-title">Компактный промпт (AI / quick-ref)</div>
+  <div style="clear:both"></div>
+
+  <div class="prompt">
+    WF Catalyst visual style = bold modular system with heavy black borders (3px), flat colors, zero radius, Neutro 700 for headings, Inter 400/600 for body, primary blue <strong>#198ED5</strong>, support blues #93D1F7 and #C4E8FE, dark background #282828, light background #EFF5F9, white cards, black structural blocks, yellow CTA <strong>#FCD84D</strong>, semantic green #00B176, semantic red #FD4E2C. Hard shadow offsets on buttons (solid black, ~6px). No soft gradients, no rounded SaaS look, no weak gray outlines, no glassmorphism.
+  </div>
+</div>
+
+<!-- 12. CSS TOKENS -->
+<div class="spec-section">
+  <span class="sec-num">12</span>
+  <div class="sec-title">CSS Custom Properties</div>
+  <div style="clear:both"></div>
+
+  <div class="cb">:root {
+  /* Core Blue Scale */
+  --color-brand-700: #198ED5;  /* PRIMARY */
+  --color-brand-900: #0265A1;
+  --color-brand-400: #93D1F7;
+  --color-brand-200: #C4E8FE;
+  --color-brand-050: #EFF5F9;
+
+  /* Monochrome */
+  --color-black:    #000000;
+  --color-gray-900: #282828;
+  --color-gray-700: #565656;
+  --color-gray-500: #989898;
+  --color-gray-100: #EBEBEB;
+  --color-white:    #FFFFFF;
+
+  /* Accent / Semantic */
+  --color-yellow:   #FCD84D;  /* CTA + Warning */
+  --color-green:    #00B176;  /* Success */
+  --color-red:      #FD4E2C;  /* Error */
+
+  /* Typography */
+  --font-heading: 'Neutro', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Borders */
+  --border-width:      3px;
+  --border-color:      #000000;
+  --border-radius:     0px;
+  --border-radius-pill: 27px;
+
+  /* Shadow */
+  --shadow-hard: 6px 6px 0px #000000;
+}
+
+/* Light Theme (default) */
+[data-theme="light"] {
+  --bg-page:         #EFF5F9;
+  --bg-surface:      #FFFFFF;
+  --text-primary:    #000000;
+  --text-secondary:  #565656;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-page:         #282828;
+  --bg-surface:      #000000;
+  --text-primary:    #FFFFFF;
+  --text-secondary:  #FFFFFF;
+}</div>
+</div>
+
+<!-- 13. JSON TOKENS -->
+<div class="spec-section">
+  <span class="sec-num">13</span>
+  <div class="sec-title">Machine-Readable Tokens (JSON)</div>
+  <div style="clear:both"></div>
+
+  <div class="cb">{
+  "fonts": {
+    "heading": { "family": "Neutro", "weight": 700 },
+    "body": { "family": "Inter", "weight": 400 },
+    "bodyEmphasis": { "family": "Inter", "weight": 600 }
+  },
+  "colors": {
+    "brand": { "700": "#198ED5", "900": "#0265A1", "400": "#93D1F7", "200": "#C4E8FE", "050": "#EFF5F9" },
+    "neutral": { "black": "#000000", "900": "#282828", "700": "#565656", "500": "#989898", "100": "#EBEBEB", "white": "#FFFFFF" },
+    "accent": { "yellow": "#FCD84D", "green": "#00B176", "red": "#FD4E2C" }
+  },
+  "ui": {
+    "borderWidth": "3px",
+    "radius": "0px",
+    "radiusPill": "27px",
+    "shadowHard": "6px 6px 0px #000000",
+    "buttonBg": "#FCD84D",
+    "buttonText": "#000000"
+  }
+}</div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer><span>WF Catalyst</span> — Brand Design System Spec © 2026</footer>
+
+</body>
+</html>
