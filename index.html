@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wonderflow — Brand Guide</title>
+  <meta name="description" content="Official visual identity and brand guidelines for Wonderflow. Colors, typography, themes, composition rules and implementation specs.">
+
+  <!-- Inter from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== FONT: Neutro Bold ===== */
+    @font-face {
+      font-family: 'Neutro';
+      src: url('fonts/Neutro-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== CSS VARIABLES (Brand Tokens) ===== */
+    :root {
+      /* Core Blue */
+      --brand-blue-900: #0265A1;
+      --brand-blue-700: #198ED5;
+      --brand-blue-400: #93D1F7;
+      --brand-blue-200: #C4E8FE;
+      --brand-blue-050: #EFF5F9;
+
+      /* Monochrome */
+      --black: #000000;
+      --gray-900: #282828;
+      --gray-700: #565656;
+      --gray-500: #989898;
+      --gray-100: #EBEBEB;
+      --white: #FFFFFF;
+
+      /* Accent */
+      --accent-yellow: #FCD84D;
+      --accent-green: #00B176;
+      --accent-red: #FD4E2C;
+
+      /* UI */
+      --border-width: 3px;
+      --radius: 0px;
+
+      /* Fonts */
+      --font-heading: 'Neutro', Impact, 'Arial Black', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ===== THEME TOKENS ===== */
+    [data-theme="light"] {
+      --page-bg: var(--brand-blue-050);
+      --surface: var(--white);
+      --text-primary: var(--black);
+      --text-secondary: var(--gray-700);
+      --border-color: var(--black);
+    }
+
+    [data-theme="dark"] {
+      --page-bg: var(--gray-900);
+      --surface: var(--black);
+      --text-primary: var(--white);
+      --text-secondary: var(--white);
+      --border-color: var(--white);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--page-bg);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ===== GLOBAL ELEMENTS ===== */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); text-transform: uppercase; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.25rem; font-family: var(--font-body); font-weight: 600; margin-bottom: 1rem; }
+
+    p { max-width: 72ch; }
+
+    a {
+      color: var(--brand-blue-700);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    a:hover { border-bottom-color: var(--brand-blue-700); }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    /* ===== THEME TOGGLE ===== */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      border-bottom: var(--border-width) solid var(--black);
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar__logo {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .theme-toggle {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--accent-yellow);
+      color: var(--black);
+      border: var(--border-width) solid var(--black);
+      border-radius: var(--radius);
+      padding: 0.5rem 1.25rem;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s;
+    }
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+    }
+    .theme-toggle::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+      z-index: -1;
+      transform: translate(4px, 4px);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--gray-900);
+      color: var(--white);
+      padding: 6rem 0 5rem;
+      border-bottom: var(--border-width) solid var(--black);
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__subtitle {
+      font-size: 1.25rem;
+      font-weight: 400;
+      max-width: 60ch;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    .hero__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 1rem;
+      border: var(--border-width) solid var(--white);
+      border-radius: var(--radius);
+    }
+
+    .tag--blue { background: var(--brand-blue-700); color: var(--white); border-color: var(--brand-blue-700); }
+    .tag--yellow { background: var(--accent-yellow); color: var(--black); border-color: var(--black); }
+    .tag--outline { background: transparent; color: var(--white); }
+
+    /* ===== NAV (Section Navigation) ===== */
+    .section-nav {
+      background: var(--surface);
+      border-bottom: var(--border-width) solid var(--border-color);
+      padding: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .section-nav__list {
+      list-style: none;
+      display: flex;
+      gap: 0.25rem;
+      padding: 0 2rem;
+      white-space: nowrap;
+    }
+
+    .section-nav__link {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.5rem 1rem;
+      color: var(--text-secondary);
+      border: 2px solid transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .section-nav__link:hover {
+      color: var(--text-primary);
+      border-color: var(--brand-blue-700);
+      border-bottom: 2px solid var(--brand-blue-700);
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--surface);
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .card--accent {
+      background: var(--brand-blue-400);
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .card--dark {
+      background: var(--gray-900);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-number {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--brand-blue-200);
+      line-height: 1;
+    }
+
+    /* ===== COLOR SWATCHES ===== */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .swatch {
+      border: var(--border-width) solid var(--black);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .swatch__color {
+      height: 100px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.5rem;
+    }
+
+    .swatch__info {
+      background: var(--white);
+      color: var(--black);
+      padding: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .swatch__name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch__hex {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--gray-700);
+    }
+
+    .swatch__role {
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      margin-top: 0.25rem;
+    }
+
+    /* ===== THEME PREVIEW ===== */
+    .theme-preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .theme-preview-grid { grid-template-columns: 1fr; }
+    }
+
+    .theme-preview {
+      border: var(--border-width) solid var(--black);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .theme-preview__header {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 1rem 1.5rem;
+      border-bottom: var(--border-width) solid var(--black);
+    }
+
+    .theme-preview__body {
+      padding: 1.5rem;
+    }
+
+    .theme-preview--light .theme-preview__header {
+      background: var(--black);
+      color: var(--white);
+    }
+    .theme-preview--light .theme-preview__body {
+      background: #EFF5F9;
+    }
+    .theme-preview--light .preview-card {
+      background: #FFFFFF;
+      color: #000000;
+      border: 3px solid #000000;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .theme-preview--light .preview-text-muted {
+      color: #565656;
+    }
+
+    .theme-preview--dark .theme-preview__header {
+      background: var(--brand-blue-700);
+      color: var(--white);
+    }
+    .theme-preview--dark .theme-preview__body {
+      background: #282828;
+    }
+    .theme-preview--dark .preview-card {
+      background: #000000;
+      color: #FFFFFF;
+      border: 3px solid #FFFFFF;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .theme-preview--dark .preview-text-muted {
+      color: #FFFFFF;
+    }
+
+    /* ===== TYPOGRAPHY DEMO ===== */
+    .type-demo {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .type-sample {
+      border-left: var(--border-width) solid var(--brand-blue-700);
+      padding-left: 1.5rem;
+    }
+
+    .type-sample__label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brand-blue-700);
+      margin-bottom: 0.5rem;
+    }
+
+    .type-sample--neutro {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .type-sample--inter-regular {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    .type-sample--inter-semibold {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* ===== TABLE ===== */
+    .brand-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .brand-table th,
+    .brand-table td {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+    }
+
+    .brand-table th {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--brand-blue-700);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .brand-table td {
+      background: var(--surface);
+    }
+
+    .brand-table code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      background: var(--brand-blue-050);
+      color: var(--brand-blue-900);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0;
+    }
+
+    [data-theme="dark"] .brand-table code {
+      background: var(--gray-900);
+      color: var(--brand-blue-400);
+    }
+
+    /* ===== RULES GRID ===== */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .rule-card {
+      background: var(--surface);
+      border: var(--border-width) solid var(--border-color);
+      padding: 1.5rem;
+    }
+
+    .rule-card__title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--brand-blue-700);
+    }
+
+    .rule-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rule-card li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .rule-card li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--brand-blue-700);
+      font-weight: 700;
+    }
+
+    /* ===== DO / DON'T ===== */
+    .do-dont-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .do-dont-grid { grid-template-columns: 1fr; }
+    }
+
+    .do-card, .dont-card {
+      border: var(--border-width) solid var(--black);
+      padding: 1.5rem;
+    }
+
+    .do-card {
+      background: var(--accent-green);
+      color: var(--black);
+    }
+
+    .dont-card {
+      background: var(--accent-red);
+      color: var(--white);
+    }
+
+    .do-card__header, .dont-card__header {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .do-card ul, .dont-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .do-card li, .dont-card li {
+      padding: 0.35rem 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .do-card li::before { content: '✓ '; font-weight: 700; }
+    .dont-card li::before { content: '✕ '; font-weight: 700; }
+
+    /* ===== HIERARCHY BLOCKS ===== */
+    .hierarchy-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hierarchy-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border: var(--border-width) solid var(--black);
+      margin-bottom: -3px;
+      font-weight: 600;
+    }
+
+    .hierarchy-item__num {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      min-width: 2.5rem;
+    }
+
+    .hierarchy-item__label {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .hierarchy-item__token {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* ===== CODE BLOCK ===== */
+    .code-block {
+      background: var(--gray-900);
+      color: var(--brand-blue-200);
+      border: var(--border-width) solid var(--black);
+      padding: 2rem;
+      overflow-x: auto;
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .code-block .key { color: var(--brand-blue-400); }
+    .code-block .string { color: var(--accent-yellow); }
+    .code-block .number { color: var(--accent-green); }
+    .code-block .bracket { color: var(--gray-500); }
+
+    /* ===== BUTTON DEMO ===== */
+    .btn-demo {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--accent-yellow);
+      color: var(--black);
+      border: var(--border-width) solid var(--black);
+      border-radius: var(--radius);
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+      transition: transform 0.15s;
+    }
+
+    .btn-demo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+      z-index: -1;
+      transform: translate(5px, 5px);
+    }
+
+    .btn-demo:hover {
+      transform: translate(-2px, -2px);
+      border-bottom: var(--border-width) solid var(--black);
+    }
+
+    /* ===== PROMPT BLOCK ===== */
+    .prompt-block {
+      background: var(--brand-blue-700);
+      color: var(--white);
+      border: var(--border-width) solid var(--black);
+      padding: 2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .prompt-block strong {
+      color: var(--accent-yellow);
+    }
+
+    /* ===== CHART GRADIENT ===== */
+    .chart-gradient {
+      display: flex;
+      border: var(--border-width) solid var(--black);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .chart-gradient__step {
+      flex: 1;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'SF Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      border-top: var(--border-width) solid var(--brand-blue-700);
+    }
+
+    footer span {
+      color: var(--brand-blue-400);
+    }
+
+    /* ===== SPACING UTILS ===== */
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      section { padding: 2.5rem 0; }
+      .container { padding: 0 1rem; }
+      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+      .swatch__color { height: 70px; }
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== TOP BAR ========== -->
+  <div class="top-bar">
+    <div class="top-bar__logo">Wonderflow</div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      ☾ Dark
+    </button>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <h1>Brand Guide</h1>
+      <p class="hero__subtitle">
+        Hard-edged, high-contrast, modular visual system. Strong black borders, flat fills, zero radius, block composition. Direct, bold, clean, and operational.
+      </p>
+      <div class="hero__tags">
+        <span class="tag tag--blue">Modular System</span>
+        <span class="tag tag--yellow">High Contrast</span>
+        <span class="tag tag--outline">Zero Radius</span>
+        <span class="tag tag--outline">Flat Fills</span>
+        <span class="tag tag--outline">Bold Structure</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION NAV ========== -->
+  <nav class="section-nav" aria-label="Page sections">
+    <ul class="section-nav__list">
+      <li><a class="section-nav__link" href="#colors">Colors</a></li>
+      <li><a class="section-nav__link" href="#themes">Themes</a></li>
+      <li><a class="section-nav__link" href="#typography">Typography</a></li>
+      <li><a class="section-nav__link" href="#usage">Usage Rules</a></li>
+      <li><a class="section-nav__link" href="#style">Do / Don't</a></li>
+      <li><a class="section-nav__link" href="#composition">Composition</a></li>
+      <li><a class="section-nav__link" href="#buttons">Buttons</a></li>
+      <li><a class="section-nav__link" href="#tokens">Token Block</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== 1. COLORS ========== -->
+  <section id="colors">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>Color Palette</h2>
+      </div>
+
+      <!-- Core Blue -->
+      <h3>Core Blue</h3>
+      <div class="swatch-grid mb-4">
+        <div class="swatch">
+          <div class="swatch__color" style="background: #0265A1;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue 900</div>
+            <div class="swatch__hex">#0265A1</div>
+            <div class="swatch__role">Deep accents, charts</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #198ED5;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue 700</div>
+            <div class="swatch__hex">#198ED5</div>
+            <div class="swatch__role">Primary brand color</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #93D1F7;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue 400</div>
+            <div class="swatch__hex">#93D1F7</div>
+            <div class="swatch__role">Accent panels</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #C4E8FE;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue 200</div>
+            <div class="swatch__hex">#C4E8FE</div>
+            <div class="swatch__role">Helper panels, chips</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #EFF5F9; border: 1px solid #EBEBEB;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue 050</div>
+            <div class="swatch__hex">#EFF5F9</div>
+            <div class="swatch__role">Light theme background</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monochrome -->
+      <h3>Monochrome</h3>
+      <div class="swatch-grid mb-4">
+        <div class="swatch">
+          <div class="swatch__color" style="background: #000000;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Black</div>
+            <div class="swatch__hex">#000000</div>
+            <div class="swatch__role">Borders, headings</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #282828;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Gray 900</div>
+            <div class="swatch__hex">#282828</div>
+            <div class="swatch__role">Dark theme bg</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #565656;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Gray 700</div>
+            <div class="swatch__hex">#565656</div>
+            <div class="swatch__role">Secondary text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #989898;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Gray 500</div>
+            <div class="swatch__hex">#989898</div>
+            <div class="swatch__role">Dividers, muted UI</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #EBEBEB;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Gray 100</div>
+            <div class="swatch__hex">#EBEBEB</div>
+            <div class="swatch__role">Light separators</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #FFFFFF; border: 1px solid #EBEBEB;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">White</div>
+            <div class="swatch__hex">#FFFFFF</div>
+            <div class="swatch__role">Cards, text on dark</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accent / Semantic -->
+      <h3>Accent / Semantic</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch__color" style="background: #FCD84D;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Yellow (CTA)</div>
+            <div class="swatch__hex">#FCD84D</div>
+            <div class="swatch__role">Primary button color</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #00B176;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Green (Success)</div>
+            <div class="swatch__hex">#00B176</div>
+            <div class="swatch__role">Success / positive state</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: #FD4E2C;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Red (Error)</div>
+            <div class="swatch__hex">#FD4E2C</div>
+            <div class="swatch__role">Error / urgent attention</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2. THEMES ========== -->
+  <section id="themes" style="background: var(--surface); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>Theme Rules</h2>
+      </div>
+
+      <div class="theme-preview-grid">
+        <!-- Light Theme -->
+        <div class="theme-preview theme-preview--light">
+          <div class="theme-preview__header">Light Theme</div>
+          <div class="theme-preview__body">
+            <div class="preview-card">
+              <strong>Primary Text #000000</strong>
+              <div class="mt-1 preview-text-muted" style="font-size: 0.9rem;">Secondary text #565656</div>
+            </div>
+            <div style="font-size: 0.8rem; color: #565656;">
+              Page bg: <code style="background:#EFF5F9; padding: 2px 6px; border: 1px solid #000; font-family: monospace;">#EFF5F9</code> &nbsp;
+              Card bg: <code style="background:#FFF; padding: 2px 6px; border: 1px solid #000; font-family: monospace;">#FFFFFF</code> &nbsp;
+              Border: <code style="background:#000; color:#FFF; padding: 2px 6px; font-family: monospace;">#000000</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dark Theme -->
+        <div class="theme-preview theme-preview--dark">
+          <div class="theme-preview__header">Dark Theme</div>
+          <div class="theme-preview__body">
+            <div class="preview-card">
+              <strong>Primary Text #FFFFFF</strong>
+              <div class="mt-1 preview-text-muted" style="font-size: 0.9rem;">Supporting text #FFFFFF</div>
+            </div>
+            <div style="font-size: 0.8rem; color: #EBEBEB;">
+              Page bg: <code style="background:#282828; color:#FFF; padding: 2px 6px; border: 1px solid #FFF; font-family: monospace;">#282828</code> &nbsp;
+              Card bg: <code style="background:#000; color:#FFF; padding: 2px 6px; border: 1px solid #FFF; font-family: monospace;">#000000</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-3" style="font-size: 0.9rem; color: var(--text-secondary);">
+        <strong>Default:</strong> Use light theme. Switch to dark for hero sections, pitch decks, section dividers, campaign panels, and visual contrast moments.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== 3. TYPOGRAPHY ========== -->
+  <section id="typography">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>Typography</h2>
+      </div>
+
+      <div class="type-demo mb-4">
+        <div class="type-sample">
+          <div class="type-sample__label">Neutro Bold 700 — Headings</div>
+          <div class="type-sample--neutro">The quick brown fox jumps over the lazy dog</div>
+        </div>
+        <div class="type-sample">
+          <div class="type-sample__label">Inter Regular 400 — Body</div>
+          <div class="type-sample--inter-regular">
+            The quick brown fox jumps over the lazy dog. Wonderflow uses a hard‑edged, high‑contrast, modular visual system with strong black borders, flat fills, and block composition.
+          </div>
+        </div>
+        <div class="type-sample">
+          <div class="type-sample__label">Inter Semibold 600 — UI Labels</div>
+          <div class="type-sample--inter-semibold">
+            Section labels · Interface emphasis · Subheads · List labels
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Type Scale</h3>
+        <div style="overflow-x: auto;">
+          <table class="brand-table">
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Font</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>H1 / Hero</td>
+                <td><code>Neutro</code></td>
+                <td>4rem / 64px</td>
+                <td>700</td>
+                <td>Section headlines, hero text</td>
+              </tr>
+              <tr>
+                <td>Short CTA</td>
+                <td><code>Neutro</code></td>
+                <td>0.9rem</td>
+                <td>700</td>
+                <td>Buttons, badges</td>
+              </tr>
+              <tr>
+                <td>Body</td>
+                <td><code>Inter</code></td>
+                <td>1.125rem / 18px</td>
+                <td>400</td>
+                <td>Paragraphs, captions</td>
+              </tr>
+              <tr>
+                <td>UI Labels</td>
+                <td><code>Inter</code></td>
+                <td>1rem</td>
+                <td>600</td>
+                <td>Small subheads, list labels</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. USAGE RULES ========== -->
+  <section id="usage" style="background: var(--surface); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>Usage Rules</h2>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-card__title">Panels & Blocks</div>
+          <ul>
+            <li>Main panel: <code>#FFFFFF</code></li>
+            <li>Accent panel: <code>#93D1F7</code></li>
+            <li>Helper panels: <code>#C4E8FE</code>, <code>#198ED5</code>, <code>#0265A1</code></li>
+            <li>Helpers ≤ 10% of total surface area</li>
+            <li>Can extend in 10% opacity steps</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__title">Borders</div>
+          <ul>
+            <li>Color: <code>#000000</code></li>
+            <li>Width: <code>3px</code></li>
+            <li>Radius: <code>0px</code> — always</li>
+            <li>No soft shadows, no glassmorphism</li>
+            <li>Hard edges define the system</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__title">Color Logic</div>
+          <ul>
+            <li>Primary site color: <code>#198ED5</code></li>
+            <li>Blue = strongest brand signal</li>
+            <li>All palette is built around this blue</li>
+            <li>Yellow is CTA-only, not decorative</li>
+            <li>Semantic green/red only for states</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__title">Semantic Colors</div>
+          <ul>
+            <li>Success: <code style="background:#00B176; color:#FFF;">#00B176</code></li>
+            <li>Warning: <code style="background:#FCD84D; color:#000;">#FCD84D</code></li>
+            <li>Error: <code style="background:#FD4E2C; color:#FFF;">#FD4E2C</code></li>
+            <li>Don't mix into charts unless meaning is success/failure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. STYLE BEHAVIOR ========== -->
+  <section id="style">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>Style Behavior</h2>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <div class="do-card__header">✓ Do</div>
+          <ul>
+            <li>Direct, structured, confident</li>
+            <li>High contrast, bold layout</li>
+            <li>Strong black borders everywhere</li>
+            <li>Modular block composition</li>
+            <li>Flat fills, zero radius</li>
+            <li>Modern and a little aggressive</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <div class="dont-card__header">✕ Don't</div>
+          <ul>
+            <li>Pastel-heavy without black structure</li>
+            <li>Rounded, friendly SaaS-style UI</li>
+            <li>Subtle gray borders</li>
+            <li>Soft shadows and glassmorphism</li>
+            <li>Gradient-heavy treatments</li>
+            <li>Too many accent colors in one block</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. COMPOSITION ========== -->
+  <section id="composition" style="background: var(--surface); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>Composition & Hierarchy</h2>
+      </div>
+
+      <h3>Contrast Hierarchy</h3>
+      <div class="hierarchy-list mb-4">
+        <div class="hierarchy-item" style="background: var(--black); color: var(--white);">
+          <span class="hierarchy-item__num">1</span>
+          <span class="hierarchy-item__label">Structure</span>
+          <span class="hierarchy-item__token">Black / White</span>
+        </div>
+        <div class="hierarchy-item" style="background: #198ED5; color: #FFF;">
+          <span class="hierarchy-item__num">2</span>
+          <span class="hierarchy-item__label">Brand Emphasis</span>
+          <span class="hierarchy-item__token">#198ED5</span>
+        </div>
+        <div class="hierarchy-item" style="background: #93D1F7; color: #000;">
+          <span class="hierarchy-item__num">3</span>
+          <span class="hierarchy-item__label">Secondary Emphasis</span>
+          <span class="hierarchy-item__token">#93D1F7 / #C4E8FE</span>
+        </div>
+        <div class="hierarchy-item" style="background: #FCD84D; color: #000;">
+          <span class="hierarchy-item__num">4</span>
+          <span class="hierarchy-item__label">Action (CTA)</span>
+          <span class="hierarchy-item__token">#FCD84D</span>
+        </div>
+        <div class="hierarchy-item" style="background: #EFF5F9; color: #000;">
+          <span class="hierarchy-item__num">5</span>
+          <span class="hierarchy-item__label">Semantic State</span>
+          <span class="hierarchy-item__token">Green / Red only when state matters</span>
+        </div>
+      </div>
+
+      <h3>Chart Color Progression</h3>
+      <p class="mb-3" style="font-size: 0.9rem; color: var(--text-secondary);">Neutral → Strong. Don't mix semantic red/green into charts unless meaning is explicitly success/failure.</p>
+      <div class="chart-gradient">
+        <div class="chart-gradient__step" style="background: #C4E8FE; color: #000;">#C4E8FE</div>
+        <div class="chart-gradient__step" style="background: #93D1F7; color: #000;">#93D1F7</div>
+        <div class="chart-gradient__step" style="background: #198ED5; color: #FFF;">#198ED5</div>
+        <div class="chart-gradient__step" style="background: #0265A1; color: #FFF;">#0265A1</div>
+      </div>
+
+      <div class="card mt-4">
+        <h3>Card & Section Rules</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.4rem 0;">— Use strong rectangular blocks</li>
+          <li style="padding: 0.4rem 0;">— Separate content into obvious modules</li>
+          <li style="padding: 0.4rem 0;">— Prefer: big title + supporting block + small accent element</li>
+          <li style="padding: 0.4rem 0;">— White card on dark area, dark card on light area, blue accent for emphasis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. BUTTONS ========== -->
+  <section id="buttons">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2>Buttons</h2>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-card__title">Button Spec</div>
+          <ul>
+            <li>Background: <code style="background:#FCD84D; color:#000;">#FCD84D</code></li>
+            <li>Text: <code>#000000</code></li>
+            <li>Border: <code>3px solid #000</code></li>
+            <li>Radius: <code>0px</code></li>
+            <li>Label: uppercase, bold, compact</li>
+            <li>Shadow: black offset underlay</li>
+          </ul>
+        </div>
+        <div class="card" style="display: flex; align-items: center; justify-content: center; min-height: 160px;">
+          <a class="btn-demo" href="#" onclick="return false;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. AI PROMPT ========== -->
+  <section style="padding: 3rem 0;">
+    <div class="container">
+      <h3 style="margin-bottom: 1rem;">Short Brand Prompt (for AI / Designers)</h3>
+      <div class="prompt-block">
+        Wonderflow visual style = <strong>bold modular system</strong> with heavy black borders, flat colors, zero radius, <strong>Neutro</strong> for headings, <strong>Inter</strong> for body, primary blue <strong>#198ED5</strong>, support blues <strong>#93D1F7</strong> and <strong>#C4E8FE</strong>, dark background <strong>#282828</strong>, light background <strong>#EFF5F9</strong>, white cards, black structural blocks, yellow CTA <strong>#FCD84D</strong>, semantic green <strong>#00B176</strong>, semantic red <strong>#FD4E2C</strong>. No soft gradients, no rounded SaaS look, no weak gray outlines.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9. TOKEN BLOCK ========== -->
+  <section id="tokens" style="background: var(--surface); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2>Machine-Readable Tokens</h2>
+      </div>
+
+      <div class="code-block"><pre><span class="bracket">{</span>
+  <span class="key">"fonts"</span>: <span class="bracket">{</span>
+    <span class="key">"heading"</span>: <span class="bracket">{</span> <span class="key">"family"</span>: <span class="string">"Neutro"</span>, <span class="key">"weight"</span>: <span class="number">700</span> <span class="bracket">}</span>,
+    <span class="key">"body"</span>: <span class="bracket">{</span> <span class="key">"family"</span>: <span class="string">"Inter"</span>, <span class="key">"weight"</span>: <span class="number">400</span> <span class="bracket">}</span>,
+    <span class="key">"bodyEmphasis"</span>: <span class="bracket">{</span> <span class="key">"family"</span>: <span class="string">"Inter"</span>, <span class="key">"weight"</span>: <span class="number">600</span> <span class="bracket">}</span>
+  <span class="bracket">}</span>,
+  <span class="key">"colors"</span>: <span class="bracket">{</span>
+    <span class="key">"brand"</span>: <span class="bracket">{</span>
+      <span class="key">"900"</span>: <span class="string">"#0265A1"</span>,
+      <span class="key">"700"</span>: <span class="string">"#198ED5"</span>,
+      <span class="key">"400"</span>: <span class="string">"#93D1F7"</span>,
+      <span class="key">"200"</span>: <span class="string">"#C4E8FE"</span>,
+      <span class="key">"050"</span>: <span class="string">"#EFF5F9"</span>
+    <span class="bracket">}</span>,
+    <span class="key">"neutral"</span>: <span class="bracket">{</span>
+      <span class="key">"black"</span>: <span class="string">"#000000"</span>,
+      <span class="key">"900"</span>: <span class="string">"#282828"</span>,
+      <span class="key">"700"</span>: <span class="string">"#565656"</span>,
+      <span class="key">"500"</span>: <span class="string">"#989898"</span>,
+      <span class="key">"100"</span>: <span class="string">"#EBEBEB"</span>,
+      <span class="key">"white"</span>: <span class="string">"#FFFFFF"</span>
+    <span class="bracket">}</span>,
+    <span class="key">"accent"</span>: <span class="bracket">{</span>
+      <span class="key">"yellow"</span>: <span class="string">"#FCD84D"</span>,
+      <span class="key">"green"</span>: <span class="string">"#00B176"</span>,
+      <span class="key">"red"</span>: <span class="string">"#FD4E2C"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">}</span>,
+  <span class="key">"themes"</span>: <span class="bracket">{</span>
+    <span class="key">"light"</span>: <span class="bracket">{</span>
+      <span class="key">"pageBg"</span>: <span class="string">"#EFF5F9"</span>,
+      <span class="key">"surface"</span>: <span class="string">"#FFFFFF"</span>,
+      <span class="key">"text"</span>: <span class="string">"#000000"</span>,
+      <span class="key">"textMuted"</span>: <span class="string">"#565656"</span>,
+      <span class="key">"border"</span>: <span class="string">"#000000"</span>
+    <span class="bracket">}</span>,
+    <span class="key">"dark"</span>: <span class="bracket">{</span>
+      <span class="key">"pageBg"</span>: <span class="string">"#282828"</span>,
+      <span class="key">"surface"</span>: <span class="string">"#000000"</span>,
+      <span class="key">"text"</span>: <span class="string">"#FFFFFF"</span>,
+      <span class="key">"textMuted"</span>: <span class="string">"#FFFFFF"</span>,
+      <span class="key">"border"</span>: <span class="string">"#000000"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">}</span>,
+  <span class="key">"ui"</span>: <span class="bracket">{</span>
+    <span class="key">"borderWidth"</span>: <span class="string">"3px"</span>,
+    <span class="key">"radius"</span>: <span class="string">"0px"</span>,
+    <span class="key">"buttonBg"</span>: <span class="string">"#FCD84D"</span>,
+    <span class="key">"buttonText"</span>: <span class="string">"#000000"</span>,
+    <span class="key">"buttonBorder"</span>: <span class="string">"#000000"</span>
+  <span class="bracket">}</span>
+<span class="bracket">}</span></pre></div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <span>Wonderflow</span> — Brand Guide &copy; 2026 &middot; Built with brand tokens
+  </footer>
+
+  <!-- ===== THEME TOGGLE JS ===== -->
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      if (current === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        toggle.textContent = '☀ Light';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        toggle.textContent = '☾ Dark';
+      }
+    });
+  </script>
+
+</body>
+</html>
