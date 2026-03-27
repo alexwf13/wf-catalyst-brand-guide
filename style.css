@@ -128,9 +128,8 @@ section{padding:4rem 0}
 .cg__s{flex:1;height:55px;display:flex;align-items:center;justify-content:center;font-family:'SF Mono',monospace;font-size:.65rem;font-weight:600}
 
 /* ===== BUTTON DEMO ===== */
-.btn-d{display:inline-block;font-family:var(--fh);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:.75rem 2rem;cursor:pointer;position:relative;text-decoration:none;transition:transform .15s;min-height:56px;line-height:24px}
-.btn-d::after{content:'';position:absolute;inset:0;background:var(--black);z-index:-1;transform:translate(6px,6px)}
-.btn-d:hover{transform:translate(-2px,-2px)}
+.btn-d{display:inline-block;font-family:var(--fh);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:.75rem 2rem;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s;min-height:56px;line-height:24px;box-shadow:6px 6px 0 var(--black)}
+.btn-d:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--black)}
 
 /* ===== CODE BLOCK ===== */
 .cb{background:var(--gray-900);color:var(--brand-200);border:var(--bw) solid var(--black);padding:1.5rem;overflow-x:auto;font-family:'SF Mono','Fira Code',monospace;font-size:.8rem;line-height:1.7}
