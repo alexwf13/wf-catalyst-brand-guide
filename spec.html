@@ -28,8 +28,8 @@
     .spec-header{background:var(--black);color:var(--white);padding:3rem 2rem;border-bottom:var(--bw) solid var(--black);text-align:center}
     .spec-header h1{font-family:var(--fh);font-size:2.5rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
     .spec-header p{font-size:1rem;opacity:.8;max-width:60ch;margin:0 auto}
-    .spec-header .tag{display:inline-block;font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;padding:.3rem .8rem;border:2px solid var(--white);border-radius:var(--pill);margin-top:1rem;color:var(--white)}
-    .spec-header .tag--blue{background:var(--brand-700);border-color:var(--brand-700)}
+    .spec-header .tag{display:inline-block;font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;padding:.3rem .8rem;border:3px solid var(--black);border-radius:var(--pill);margin-top:1rem;color:var(--black)}
+    .spec-header .tag--blue{background:var(--brand-700);border-color:var(--black)}
 
     /* Sections */
     .spec-section{padding:2.5rem 0;border-bottom:1px solid var(--gray-100)}
@@ -68,8 +68,8 @@
     .dont-c li::before{content:'✕ ';font-weight:700}
 
     /* Button demo */
-    .btn-demo{display:inline-block;font-family:var(--fh);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:.7rem 1.8rem;box-shadow:6px 6px 0 var(--black);margin:.5rem .75rem .5rem 0;cursor:default}
-    .pill-demo{display:inline-block;font-family:var(--fh);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .7rem;border:2px solid var(--black);border-radius:var(--pill);margin:.3rem .4rem .3rem 0}
+    .btn-demo{display:inline-block;font-family:var(--fh);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--yellow);color:var(--black);border:var(--bw) solid var(--black);border-radius:var(--rad);padding:16px 24px;box-shadow:-6px 6px 0 var(--black);margin:.5rem .75rem .5rem 0;cursor:default;min-height:56px}
+    .pill-demo{display:inline-block;font-family:var(--fh);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .7rem;border:3px solid var(--black);border-radius:var(--pill);margin:.3rem .4rem .3rem 0;color:var(--black)}
     .sec-cta-demo{display:inline-block;font-family:var(--fh);font-size:.7rem;font-weight:700;text-transform:uppercase;padding:.5rem 1.2rem;border:2px solid var(--black);border-radius:32px;margin:.5rem .75rem .5rem 0;cursor:default}
 
     /* Theme preview */
@@ -130,14 +130,14 @@
   <div class="card">
     <p>WF Catalyst использует <strong>жёсткую, высококонтрастную, модульную</strong> визуальную систему:</p>
     <ul style="margin:.75rem 0 0 1.2rem;font-size:.9rem">
-      <li>Чёрные бордеры <code>3px</code> на всём</li>
+      <li>Чёрные бордеры <code>3px</code> на всём — <strong>всегда чёрные, никогда белые</strong></li>
       <li>Плоские заливки, без градиентов</li>
       <li>Блочная композиция с чёткими секциями/карточками</li>
-      <li>Геометрические заголовки верхним регистром (Neutro Bold)</li>
-      <li>Синий <code>#198ED5</code> — основной сигнал бренда</li>
+      <li>Геометрические заголовки верхним регистром (Neutro Bold / Resolve Sans Black Ext для кириллицы)</li>
+      <li><code>#93D1F7</code> (brand-400) — <strong>основной цвет поверхностей</strong> (карточки, панели)</li>
       <li>Жёлтый <code>#FCD84D</code> — цвет CTA</li>
+      <li>Тень: <strong>влево-вниз</strong> <code>-6px 6px 0</code></li>
       <li>Тёмная/светлая темы с одинаковыми правилами</li>
-      <li><code>border-radius: 0</code> на всех блоках (pill только на тегах/бейджах)</li>
     </ul>
     <p style="margin-top:.75rem;font-style:italic;font-size:.85rem;color:var(--gray-700)">Стиль: прямой, смелый, чистый, операционный — немного агрессивный в хорошем смысле.</p>
   </div>
@@ -151,11 +151,11 @@
 
   <div class="subsec">2.1 Core Blue Scale</div>
   <div class="sg">
-    <div class="sw"><div class="sw__c" style="background:#198ED5"></div><div class="sw__i"><div class="sw__n">brand-700</div><div class="sw__h">#198ED5</div></div></div>
-    <div class="sw"><div class="sw__c" style="background:#0265A1"></div><div class="sw__i"><div class="sw__n">brand-900</div><div class="sw__h">#0265A1</div></div></div>
-    <div class="sw"><div class="sw__c" style="background:#93D1F7"></div><div class="sw__i"><div class="sw__n">brand-400</div><div class="sw__h">#93D1F7</div></div></div>
-    <div class="sw"><div class="sw__c" style="background:#C4E8FE"></div><div class="sw__i"><div class="sw__n">brand-200</div><div class="sw__h">#C4E8FE</div></div></div>
-    <div class="sw"><div class="sw__c" style="background:#EFF5F9"></div><div class="sw__i"><div class="sw__n">brand-050</div><div class="sw__h">#EFF5F9</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#93D1F7"></div><div class="sw__i"><div class="sw__n">brand-400 ★</div><div class="sw__h">#93D1F7</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Основной цвет поверхностей</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#EFF5F9"></div><div class="sw__i"><div class="sw__n">brand-050</div><div class="sw__h">#EFF5F9</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Фон страницы (не белый!)</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#198ED5"></div><div class="sw__i"><div class="sw__n">brand-700</div><div class="sw__h">#198ED5</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Вспомогательный</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#0265A1"></div><div class="sw__i"><div class="sw__n">brand-900</div><div class="sw__h">#0265A1</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Вспомогательный</div></div></div>
+    <div class="sw"><div class="sw__c" style="background:#C4E8FE"></div><div class="sw__i"><div class="sw__n">brand-200</div><div class="sw__h">#C4E8FE</div><div style="font-size:.68rem;color:#989898;margin-top:.1rem">Вспомогательный</div></div></div>
   </div>
 
   <div class="subsec">2.2 Monochrome</div>
@@ -176,7 +176,7 @@
   </div>
 
   <div class="note">
-    <strong>Правило:</strong> Вспомогательные цвета (<code>#C4E8FE</code>, <code>#198ED5</code>, <code>#0265A1</code>) — <strong>не более ~10%</strong> визуальной площади. Акценты (жёлтый, зелёный, красный) — только для семантических состояний.
+    <strong>Правило:</strong> <code>#93D1F7</code> (brand-400) — <strong>основной рабочий цвет поверхностей</strong>. Остальные синие (700, 900, 200) — равнозначные вспомогательные для тегов и мелких элементов. Не более ~10% площади. Акценты (жёлтый <code>#FCD84D</code>, зелёный <code>#00B176</code>, красный <code>#FD4E2C</code>) — только семантика.
   </div>
 </div>
 
@@ -197,7 +197,7 @@
     <div class="tp">
       <div class="tp__h" style="background:var(--brand-700);color:#fff">Dark</div>
       <div class="tp__b" style="background:#282828">
-        <div class="tp__card" style="background:#000;color:#FFF;border-color:#FFF">Карточка на тёмном фоне</div>
+        <div class="tp__card" style="background:#000;color:#FFF;border-color:#000">Карточка на тёмном фоне</div>
         <div style="font-size:.78rem;color:#fff"><strong>Фон:</strong> #282828 &nbsp; <strong>Карточка:</strong> #000000 &nbsp; <strong>Текст:</strong> #FFFFFF</div>
       </div>
     </div>
@@ -209,7 +209,7 @@
     <tr><td>Поверхность (карточки)</td><td><code>#FFFFFF</code></td><td><code>#000000</code></td></tr>
     <tr><td>Основной текст</td><td><code>#000000</code></td><td><code>#FFFFFF</code></td></tr>
     <tr><td>Вторичный текст</td><td><code>#565656</code></td><td><code>#FFFFFF</code></td></tr>
-    <tr><td>Бордеры</td><td><code>#000000</code></td><td><code>#000000</code> / <code>#FFFFFF</code></td></tr>
+    <tr><td>Бордеры</td><td><code>#000000</code></td><td><code>#000000</code> — <strong>всегда чёрные</strong></td></tr>
   </table>
 </div>
 
@@ -221,9 +221,11 @@
 
   <div class="subsec">Шрифтовой стек</div>
   <div class="card" style="margin-bottom:1.5rem">
-    <div style="font-family:var(--fh);font-size:2rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:.25rem">Neutro Bold — заголовки, CTA</div>
+    <div style="font-family:var(--fh);font-size:2rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:.25rem">Neutro Bold — заголовки, CTA (Latin)</div>
+    <div style="font-family:var(--fb);font-weight:700;font-size:1.5rem;margin-bottom:.25rem">Resolve Sans Black Ext — заголовки (кириллица)</div>
     <div style="font-family:var(--fb);font-size:1rem;line-height:1.6;color:var(--gray-700)">Inter Regular / Semi Bold — body, подписи, UI</div>
   </div>
+  <div class="note">Типографическая шкала спроектирована для <strong>1920px viewport</strong>. Для 1440px и ниже — пересчитывать пропорционально.</div>
 
   <div class="subsec">Типографическая шкала</div>
   <table>
@@ -256,11 +258,11 @@
     <tr><td>Border radius</td><td><code>0px</code> (все блоки)</td></tr>
     <tr><td>Pill radius</td><td><code>27px</code> (только теги/бейджи)</td></tr>
     <tr><td>Divider</td><td><code>1px solid #989898</code></td></tr>
-    <tr><td>Hard shadow</td><td><code>6px 6px 0px #000000</code> (вправо-вниз, без blur)</td></tr>
+    <tr><td>Hard shadow</td><td><code>-6px 6px 0px #000000</code> (влево-вниз, без blur)</td></tr>
   </table>
 
   <div class="note">
-    Тень используется <strong>только</strong> на кнопках и ключевых интерактивных элементах. Карточки по умолчанию без тени.
+    Тень используется <strong>только</strong> на кнопках и ключевых интерактивных элементах. Карточки по умолчанию без тени. Бордеры <strong>всегда чёрные</strong> — никогда белые.
   </div>
 </div>
 
@@ -279,8 +281,9 @@
     <tr><td>Background</td><td><code>#FCD84D</code></td></tr>
     <tr><td>Border</td><td><code>3px solid #000000</code></td></tr>
     <tr><td>Border-radius</td><td><code>0px</code></td></tr>
-    <tr><td>Shadow</td><td><code>6px 6px 0px #000000</code></td></tr>
-    <tr><td>Font</td><td>Neutro Bold 700, 20px/24px</td></tr>
+    <tr><td>Shadow</td><td><code>-6px 6px 0px #000000</code></td></tr>
+    <tr><td>Padding</td><td><code>24px</code> horizontal, <code>16px</code> vertical</td></tr>
+    <tr><td>Font</td><td>Neutro Bold 700 / Resolve Sans Black Ext (Cyrillic), 20px/24px</td></tr>
     <tr><td>Text</td><td><code>#000000</code>, uppercase</td></tr>
     <tr><td>Min height</td><td>56px</td></tr>
   </table>
@@ -288,29 +291,19 @@
   <div class="subsec">6.2 Pill Tag / Badge</div>
   <div style="margin-bottom:1rem">
     <span class="pill-demo" style="background:var(--brand-200)">BRAND</span>
-    <span class="pill-demo" style="background:var(--brand-700);color:#fff;border-color:var(--brand-700)">ACTIVE</span>
+    <span class="pill-demo" style="background:var(--brand-700)">ACTIVE</span>
     <span class="pill-demo" style="background:var(--yellow)">NEW</span>
   </div>
   <table>
     <tr><th>Свойство</th><th>Значение</th></tr>
-    <tr><td>Border</td><td><code>~1.75px solid #000</code></td></tr>
+    <tr><td>Border</td><td><code>3px solid #000000</code></td></tr>
     <tr><td>Radius</td><td><code>27px</code> (pill)</td></tr>
     <tr><td>Font</td><td>Neutro Bold 700, 18px</td></tr>
+    <tr><td>Text color</td><td><code>#000000</code> — <strong>всегда чёрный</strong></td></tr>
     <tr><td>Padding</td><td>12px 27px</td></tr>
   </table>
 
-  <div class="subsec">6.3 Secondary CTA (Rounded)</div>
-  <div style="margin-bottom:1rem">
-    <span class="sec-cta-demo" style="background:var(--yellow)">LEARN MORE</span>
-    <span class="sec-cta-demo" style="background:var(--brand-900);color:#fff">GET STARTED</span>
-  </div>
-  <table>
-    <tr><th>Свойство</th><th>Значение</th></tr>
-    <tr><td>Background</td><td><code>#FCD84D</code> или <code>#0265A1</code></td></tr>
-    <tr><td>Border</td><td><code>~2px solid #000</code></td></tr>
-    <tr><td>Radius</td><td><code>32px</code> (pill)</td></tr>
-    <tr><td>Font</td><td>Neutro Bold 700, 21px</td></tr>
-  </table>
+  <div class="note">Текст на тегах <strong>всегда чёрный</strong>. Белый текст на тегах не используется. Бордер тегов — <strong>3px</strong>, как и у всех остальных элементов.</div>
 </div>
 
 <!-- 7. USAGE RULES -->
@@ -321,12 +314,12 @@
 
   <table>
     <tr><th>Элемент</th><th>Цвет(а)</th></tr>
-    <tr><td>Основной цвет сайта</td><td><code>#198ED5</code></td></tr>
-    <tr><td>Фон страницы (light)</td><td><code>#EFF5F9</code></td></tr>
+    <tr><td><strong>Карточки / панели</strong></td><td><code>#93D1F7</code> (brand-400) — <strong>основной рабочий цвет</strong></td></tr>
+    <tr><td>Фон страницы (light)</td><td><code>#EFF5F9</code> — не белый!</td></tr>
     <tr><td>Фон страницы (dark)</td><td><code>#282828</code></td></tr>
-    <tr><td>Карточки / панели</td><td><code>#FFFFFF</code></td></tr>
-    <tr><td>Акцентная панель</td><td><code>#93D1F7</code></td></tr>
-    <tr><td>Бордеры</td><td><code>#000000</code></td></tr>
+    <tr><td>Белые карточки (light)</td><td><code>#FFFFFF</code></td></tr>
+    <tr><td>Теги, выделения</td><td><code>#198ED5</code>, <code>#0265A1</code>, <code>#C4E8FE</code> (равнозначные)</td></tr>
+    <tr><td>Бордеры</td><td><code>#000000</code> — <strong>всегда чёрные, обе темы</strong></td></tr>
     <tr><td>Кнопки CTA</td><td><code>#FCD84D</code></td></tr>
     <tr><td>Success</td><td><code>#00B176</code></td></tr>
     <tr><td>Warning</td><td><code>#FCD84D</code></td></tr>
@@ -349,11 +342,12 @@
       <h4>✅ DO</h4>
       <ul>
         <li>Плоские заливки</li>
-        <li>Чёрные бордеры 3px на всём</li>
+        <li>Чёрные бордеры 3px на всём — никогда белые</li>
         <li>border-radius: 0</li>
-        <li>Жёсткая тень <code>6px 6px 0</code></li>
-        <li>UPPERCASE Neutro для заголовков</li>
-        <li>Цвета строго по токенам</li>
+        <li>Жёсткая тень <code>-6px 6px 0</code> (влево-вниз)</li>
+        <li>UPPERCASE Neutro / Resolve Sans для заголовков</li>
+        <li>brand-400 (#93D1F7) для карточек/панелей</li>
+        <li>Цвета строго по токенам, с hex-кодами</li>
         <li>Высокий контраст ≥ 4.5:1</li>
         <li>Модульная сетка</li>
       </ul>
@@ -365,10 +359,13 @@
         <li>Мягкие тени / drop shadow / glow</li>
         <li>Скруглённые углы (кроме pill)</li>
         <li>Тонкие серые бордеры</li>
+        <li>Белые бордеры — никогда</li>
+        <li>Голубые полоски / декоративные линии</li>
         <li>Пастельные макеты без чёрной структуры</li>
         <li>Glassmorphism</li>
         <li>Rounded friendly SaaS-стиль</li>
-        <li>Много акцентных цветов в одном блоке</li>
+        <li>Хелпер-синие (700/900/200) для больших поверхностей</li>
+        <li>Белый текст на синих тегах</li>
       </ul>
     </div>
   </div>
@@ -387,15 +384,15 @@
       <span style="flex:1">Структура</span>
       <span style="font-family:monospace;font-size:.75rem">#000 / #FFF</span>
     </div>
-    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--brand-700);color:#fff">
-      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">2</span>
-      <span style="flex:1">Бренд</span>
-      <span style="font-family:monospace;font-size:.75rem">#198ED5</span>
-    </div>
     <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--brand-400)">
+      <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">2</span>
+      <span style="flex:1">Основной цвет поверхностей</span>
+      <span style="font-family:monospace;font-size:.75rem">#93D1F7</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--brand-700)">
       <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">3</span>
-      <span style="flex:1">Вторичный акцент</span>
-      <span style="font-family:monospace;font-size:.75rem">#93D1F7 / #C4E8FE</span>
+      <span style="flex:1">Вспомогательные (теги, акценты)</span>
+      <span style="font-family:monospace;font-size:.75rem">#198ED5 / #0265A1 / #C4E8FE</span>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;margin-bottom:-3px;font-weight:600;background:var(--yellow)">
       <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">4</span>
@@ -405,7 +402,7 @@
     <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:3px solid #000;font-weight:600;background:var(--green)">
       <span style="font-family:var(--fh);font-size:1.2rem;width:1.5rem">5</span>
       <span style="flex:1">Семантика</span>
-      <span style="font-family:monospace;font-size:.75rem">green / red</span>
+      <span style="font-family:monospace;font-size:.75rem">#00B176 / #FD4E2C</span>
     </div>
   </div>
 
@@ -413,7 +410,7 @@
   <div style="display:flex;border:3px solid #000;overflow:hidden;margin-bottom:1rem">
     <div style="flex:1;height:50px;background:#C4E8FE;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600">#C4E8FE</div>
     <div style="flex:1;height:50px;background:#93D1F7;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600">#93D1F7</div>
-    <div style="flex:1;height:50px;background:#198ED5;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600;color:#fff">#198ED5</div>
+    <div style="flex:1;height:50px;background:#198ED5;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600">198ED5</div>
     <div style="flex:1;height:50px;background:#0265A1;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.65rem;font-weight:600;color:#fff">#0265A1</div>
   </div>
 
@@ -433,14 +430,14 @@
 
   <ol class="pr">
     <li><strong>Neo-brutalism:</strong> Жёсткие чёрные бордеры на всём. Без мягких теней, градиентов, скруглений (кроме pill).</li>
-    <li><strong>Высокий контраст:</strong> Чёрные бордеры #000 по 3px на всех карточках, кнопках и блоках.</li>
-    <li><strong>Жёсткие тени:</strong> Кнопки и ключевые элементы — сплошной чёрный прямоугольник (~6px, без blur).</li>
-    <li><strong>Смелая типографика:</strong> Neutro Bold для всех заголовков — uppercase, геометрический, индустриальный.</li>
+    <li><strong>Чёрные бордеры всегда:</strong> #000 по 3px на всех карточках, кнопках, тегах. Белые бордеры — никогда.</li>
+    <li><strong>Тень влево-вниз:</strong> Кнопки — сплошной чёрный прямоугольник <code>-6px 6px 0</code> (без blur).</li>
+    <li><strong>Смелая типографика:</strong> Neutro Bold (Latin) / Resolve Sans Black Ext (Cyrillic) — uppercase, геометрический.</li>
     <li><strong>Чистый body-текст:</strong> Inter для всего основного текста — современный, читабельный, нейтральный.</li>
-    <li><strong>Палитра на базе синего:</strong> Основная визуальная идентичность — #198ED5 с 5-ступенчатой шкалой.</li>
-    <li><strong>Жёлтый CTA:</strong> Основной call-to-action всегда жёлтый #FCD84D с чёрным текстом и тенью.</li>
-    <li><strong>Акценты умеренно:</strong> Оранжевый, жёлтый, зелёный — только семантика, ≤10% площади.</li>
-    <li><strong>Две темы:</strong> Полная поддержка light/dark с чёткими переключениями токенов.</li>
+    <li><strong>brand-400 — основной:</strong> #93D1F7 — цвет поверхностей. Остальные синие — равнозначные хелперы для тегов.</li>
+    <li><strong>Жёлтый CTA:</strong> Основной call-to-action — #FCD84D с чёрным текстом и тенью.</li>
+    <li><strong>Акценты умеренно:</strong> Жёлтый #FCD84D, зелёный #00B176, красный #FD4E2C — только семантика, ≤10%.</li>
+    <li><strong>Две темы:</strong> Light/dark с одинаковыми структурными правилами. Бордеры чёрные в обеих.</li>
     <li><strong>Геометрические макеты:</strong> Карточки, блоки и секции — прямоугольные, строгая сетка.</li>
   </ol>
 </div>
@@ -452,7 +449,7 @@
   <div style="clear:both"></div>
 
   <div class="prompt">
-    WF Catalyst visual style = bold modular system with heavy black borders (3px), flat colors, zero radius, Neutro 700 for headings, Inter 400/600 for body, primary blue <strong>#198ED5</strong>, support blues #93D1F7 and #C4E8FE, dark background #282828, light background #EFF5F9, white cards, black structural blocks, yellow CTA <strong>#FCD84D</strong>, semantic green #00B176, semantic red #FD4E2C. Hard shadow offsets on buttons (solid black, ~6px). No soft gradients, no rounded SaaS look, no weak gray outlines, no glassmorphism.
+    WF Catalyst visual style = bold modular system with heavy black borders (3px, always black, never white), flat colors, zero radius, Neutro Bold 700 (Latin) / Resolve Sans Black Ext (Cyrillic) for headings, Inter 400/600 for body. Primary surface color <strong>#93D1F7</strong> (brand-400) for cards/panels. Helper blues #198ED5, #0265A1, #C4E8FE — equal-level, only for tags/highlights. Page background #EFF5F9 (not white). Dark background #282828. Yellow CTA <strong>#FCD84D</strong> with shadow -6px 6px 0 #000. Semantic green #00B176, red #FD4E2C. Tags: 3px border, black text always. No white borders, no blue stripes, no soft gradients, no rounded SaaS look, no glassmorphism.
   </div>
 </div>
 
@@ -484,17 +481,18 @@
   --color-red:      #FD4E2C;  /* Error */
 
   /* Typography */
-  --font-heading: 'Neutro', sans-serif;
+  --font-heading: 'Neutro', 'Resolve Sans', sans-serif;
+  --font-heading-cyrillic: 'Resolve Sans', sans-serif;
   --font-body:    'Inter', sans-serif;
 
-  /* Borders */
+  /* Borders — ALWAYS black, never white */
   --border-width:      3px;
   --border-color:      #000000;
   --border-radius:     0px;
   --border-radius-pill: 27px;
 
-  /* Shadow */
-  --shadow-hard: 6px 6px 0px #000000;
+  /* Shadow — left-down */
+  --shadow-hard: -6px 6px 0px #000000;
 }
 
 /* Light Theme (default) */
@@ -505,12 +503,13 @@
   --text-secondary:  #565656;
 }
 
-/* Dark Theme */
+/* Dark Theme — borders stay #000 */
 [data-theme="dark"] {
   --bg-page:         #282828;
   --bg-surface:      #000000;
   --text-primary:    #FFFFFF;
   --text-secondary:  #FFFFFF;
+  --border-color:    #000000;
 }</div>
 </div>
 
@@ -535,9 +534,12 @@
     "borderWidth": "3px",
     "radius": "0px",
     "radiusPill": "27px",
-    "shadowHard": "6px 6px 0px #000000",
+    "shadowHard": "-6px 6px 0px #000000",
     "buttonBg": "#FCD84D",
-    "buttonText": "#000000"
+    "buttonText": "#000000",
+    "buttonPaddingH": "24px",
+    "buttonPaddingV": "16px",
+    "buttonMinHeight": "56px"
   }
 }</div>
 </div>
