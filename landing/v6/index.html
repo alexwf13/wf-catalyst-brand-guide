@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Catalyst — Marketing Due Diligence | Wonderflow</title>
+<meta name="description" content="AI-powered marketing due diligence. 15 days. $9,500 fixed.">
+<style>
+/* ========================================================
+   V6: DATA TERMINAL
+   JetBrains Mono — full monospace, data-dense
+   Dark OLED bg, green/cyan/amber status colors
+   Bloomberg Terminal meets Vercel Dashboard
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --bg: #0A0A0A;
+  --bg-raised: #141414;
+  --bg-card: #1A1A1A;
+  --text: #E5E5E5;
+  --text-muted: #737373;
+  --text-dim: #404040;
+  --green: #22C55E;
+  --green-dim: rgba(34,197,94,0.1);
+  --amber: #D97706;
+  --amber-dim: rgba(217,119,6,0.1);
+  --cyan: #06B6D4;
+  --cyan-dim: rgba(6,182,212,0.1);
+  --red: #EF4444;
+  --border: #262626;
+  --border-light: #333333;
+
+  --font: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --container: 1080px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+h1, h2, h3 { font-family: var(--font); font-weight: 700; line-height: 1.2; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.03em; }
+h2 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); letter-spacing: -0.02em; }
+h3 { font-size: 0.88rem; font-weight: 600; }
+p { font-size: 0.85rem; line-height: 1.75; color: var(--text-muted); font-weight: 400; }
+
+.c { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+section { padding: 100px 0; }
+
+/* Reveal */
+.rv {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.rv.v { opacity: 1; transform: none; }
+.rd1 { transition-delay: 80ms; }
+.rd2 { transition-delay: 160ms; }
+.rd3 { transition-delay: 240ms; }
+
+/* Label — like terminal prompt */
+.prompt {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--green);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.prompt::before { content: '> '; opacity: 0.5; }
+
+/* Status indicator */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.status__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* === NAV === */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+.nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 52px;
+}
+.nav__logo {
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+.nav__logo span { color: var(--green); }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-dim);
+  transition: color 0.2s;
+  text-transform: lowercase;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  padding: 6px 16px;
+  border: 1px solid var(--green);
+  color: var(--green) !important;
+  font-weight: 500 !important;
+  font-size: 0.68rem !important;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--bg) !important; }
+
+/* === HERO === */
+.hero {
+  padding: 80px 0 100px;
+  border-bottom: 1px solid var(--border);
+}
+.hero .prompt { font-size: 0.78rem; }
+.hero h1 {
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+.hero h1 .hl { color: var(--green); }
+.hero__sub {
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.hero__acts { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+.btn-term {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 1px solid var(--green);
+  background: var(--green-dim);
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-term:hover { background: var(--green); color: var(--bg); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--text); }
+
+/* Terminal card */
+.terminal {
+  margin-top: 60px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+}
+.terminal__dots {
+  display: flex;
+  gap: 5px;
+}
+.terminal__dots span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border-light);
+}
+.terminal__dots span:first-child { background: var(--red); }
+.terminal__dots span:nth-child(2) { background: var(--amber); }
+.terminal__dots span:nth-child(3) { background: var(--green); }
+.terminal__body { padding: 20px; }
+.term-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+}
+.term-line:last-child { border-bottom: none; }
+.term-line__key { color: var(--text-muted); }
+.term-line__val { font-weight: 600; }
+.term-line__val--red { color: var(--red); }
+.term-line__val--green { color: var(--green); }
+.term-line__val--amber { color: var(--amber); }
+.term-output {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--green-dim);
+  border: 1px solid rgba(34,197,94,0.2);
+  font-size: 0.75rem;
+  color: var(--green);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 60px;
+  border: 1px solid var(--border);
+}
+.sg-item {
+  padding: 24px 20px;
+  border-right: 1px solid var(--border);
+}
+.sg-item:last-child { border-right: none; }
+.sg-item__v { font-weight: 700; font-size: 1.6rem; color: var(--text); }
+.sg-item__l { font-size: 0.65rem; color: var(--text-dim); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* === PROBLEM === */
+.problem { border-bottom: 1px solid var(--border); }
+.problem__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 48px;
+  background: var(--border);
+}
+.prob-cell {
+  background: var(--bg);
+  padding: 32px 24px;
+  transition: background 0.3s;
+}
+.prob-cell:hover { background: var(--bg-raised); }
+.prob-cell__id {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+.prob-cell h3 { margin-bottom: 8px; color: var(--text); }
+.prob-cell p { font-size: 0.78rem; }
+
+/* === DELIVERABLES === */
+.deliverables { border-bottom: 1px solid var(--border); }
+.del-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 48px;
+}
+.del-table th {
+  padding: 10px 16px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.del-table td {
+  padding: 14px 16px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.del-table tr:hover td { background: var(--bg-raised); }
+.del-table td:first-child { color: var(--cyan); font-weight: 500; }
+.del-table td:nth-child(2) { color: var(--text); font-weight: 600; }
+
+/* Guarantee */
+.guarantee {
+  margin-top: 48px;
+  padding: 20px 24px;
+  border: 1px solid rgba(34,197,94,0.3);
+  background: var(--green-dim);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.guarantee .status__dot { animation: none; }
+.guarantee p { max-width: none; color: var(--green); font-size: 0.78rem; font-weight: 500; }
+
+/* === PROCESS === */
+.process { border-bottom: 1px solid var(--border); }
+.timeline {
+  margin-top: 48px;
+  border: 1px solid var(--border);
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 100px 160px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.tl-row:last-child { border-bottom: none; }
+.tl-row:hover { background: var(--bg-raised); }
+.tl-cell {
+  padding: 20px 16px;
+  border-right: 1px solid var(--border);
+}
+.tl-cell:last-child { border-right: none; }
+.tl-cell--phase {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.tl-cell--days {
+  font-size: 0.72rem;
+  color: var(--amber);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.tl-cell--desc h3 { margin-bottom: 4px; }
+.tl-cell--desc p { font-size: 0.75rem; }
+
+/* === METHODOLOGY === */
+.methodology { border-bottom: 1px solid var(--border); }
+.meth-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 48px;
+  background: var(--border);
+}
+.meth-cell {
+  background: var(--bg);
+  padding: 40px 24px;
+  text-align: center;
+  transition: background 0.3s;
+}
+.meth-cell:hover { background: var(--bg-raised); }
+.meth-cell__v { font-weight: 700; font-size: 2.4rem; color: var(--text); }
+.meth-cell__l { font-size: 0.65rem; color: var(--text-dim); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.meth-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 48px;
+}
+.meth-text p { max-width: none; }
+
+/* === COMPARISON === */
+.comparison { border-bottom: 1px solid var(--border); }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 48px;
+}
+.comp-table th {
+  padding: 10px 16px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.comp-table th:nth-child(3) { color: var(--green); }
+.comp-table td {
+  padding: 14px 16px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.comp-table td:nth-child(3) { color: var(--text); font-weight: 600; }
+.comp-table tr:hover td { background: var(--bg-raised); color: var(--text); }
+.comp-table tr:hover td:nth-child(3) { color: var(--green); }
+
+/* === FAQ === */
+.faq { border-bottom: 1px solid var(--border); }
+.faq-list { margin-top: 48px; max-width: 700px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--cyan); }
+.faq-icon {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  transition: transform 0.3s var(--ease), color 0.2s;
+}
+.faq-item.active .faq-icon { transform: rotate(45deg); color: var(--cyan); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease), padding 0.4s;
+}
+.faq-item.active .faq-a { max-height: 160px; padding: 0 0 16px; }
+.faq-a p { max-width: none; font-size: 0.78rem; }
+
+/* === FINAL CTA === */
+.final-cta {
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+  padding: 120px 0;
+}
+.cta-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.final-cta h2 { margin-bottom: 16px; }
+.final-cta h2 .hl { color: var(--green); }
+.final-cta p { margin-bottom: 40px; }
+
+.after-rows { border: 1px solid var(--border); }
+.after-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.after-row:last-child { border-bottom: none; }
+.after-row:hover { background: var(--bg-card); }
+.after-cell {
+  padding: 16px;
+  border-right: 1px solid var(--border);
+}
+.after-cell:last-child { border-right: none; }
+.after-cell--id { font-weight: 700; color: var(--cyan); font-size: 0.78rem; display: flex; align-items: center; }
+.after-cell h3 { margin-bottom: 2px; font-size: 0.82rem; }
+.after-cell p { font-size: 0.72rem; max-width: none; }
+
+/* === FOOTER === */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__name { font-size: 0.65rem; color: var(--text-dim); }
+.footer__links { display: flex; gap: 20px; }
+.footer__links a { font-size: 0.68rem; color: var(--text-dim); transition: color 0.2s; }
+.footer__links a:hover { color: var(--green); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  section { padding: 60px 0; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .sg-item { border-bottom: 1px solid var(--border); }
+  .problem__grid { grid-template-columns: 1fr; }
+  .tl-row { grid-template-columns: 1fr; }
+  .tl-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .tl-cell:last-child { border-bottom: none; }
+  .meth-grid { grid-template-columns: 1fr 1fr; }
+  .meth-text { grid-template-columns: 1fr; gap: 24px; }
+  .cta-layout { grid-template-columns: 1fr; gap: 48px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .sg-item { border-right: none; }
+  .meth-grid { grid-template-columns: 1fr; }
+  .terminal { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="c">
+    <div class="nav__inner">
+      <div class="nav__logo">the_<span>catalyst</span></div>
+      <div class="nav-links">
+        <a href="#problem">problem</a>
+        <a href="#deliverables">output</a>
+        <a href="#process">process</a>
+        <a href="#faq">faq</a>
+        <a href="#cta" class="nav-cta">start_project</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="c">
+    <div class="prompt rv">catalyst.init(marketing_due_diligence)</div>
+    <h1 class="rv rd1">Your pipeline has a leak. <span class="hl">We find it.</span></h1>
+    <p class="hero__sub rv rd2">AI-powered marketing audit → root cause analysis → tactical action plan. 15 working days. Fixed scope. Fixed price.</p>
+    <div class="hero__acts rv rd3">
+      <a href="#cta" class="btn-term">$ start_diagnosis →</a>
+      <a href="#process" class="btn-ghost">view_process()</a>
+    </div>
+
+    <div class="terminal rv">
+      <div class="terminal__bar">
+        <div class="terminal__dots"><span></span><span></span><span></span></div>
+        <span>catalyst — pipeline_scan.sh</span>
+        <span style="margin-left: auto;" class="status"><span class="status__dot"></span> scanning</span>
+      </div>
+      <div class="terminal__body">
+        <div class="term-line"><span class="term-line__key">top_of_funnel</span><span class="term-line__val">14,200 /mo</span></div>
+        <div class="term-line"><span class="term-line__key">untracked_leads</span><span class="term-line__val term-line__val--red">~47%</span></div>
+        <div class="term-line"><span class="term-line__key">landing_bounce</span><span class="term-line__val term-line__val--red">68%</span></div>
+        <div class="term-line"><span class="term-line__key">sales_ready</span><span class="term-line__val term-line__val--amber">312</span></div>
+        <div class="term-line"><span class="term-line__key">potential_recovery</span><span class="term-line__val term-line__val--green">+$42K /mo</span></div>
+        <div class="term-output">→ 2 structural issues identified. Run catalyst.diagnose() for root cause analysis.</div>
+      </div>
+    </div>
+
+    <div class="stats-grid rv">
+      <div class="sg-item"><div class="sg-item__v">$9,500</div><div class="sg-item__l">Fixed Price</div></div>
+      <div class="sg-item"><div class="sg-item__v">15d</div><div class="sg-item__l">Timeline</div></div>
+      <div class="sg-item"><div class="sg-item__v">73+</div><div class="sg-item__l">Method Docs</div></div>
+      <div class="sg-item"><div class="sg-item__v">27-pt</div><div class="sg-item__l">QA Gate</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="c">
+    <div class="prompt rv">diagnose.identify_problems()</div>
+    <h2 class="rv rd1">Spending ≠ Growing</h2>
+    <p class="rv rd2" style="max-width: 600px;">Most marketing teams operate on intuition. The Catalyst replaces guesswork with data-backed root cause analysis.</p>
+    <div class="problem__grid rv">
+      <div class="prob-cell"><div class="prob-cell__id">err:001</div><h3>Invisible Leads</h3><p>40–60% of leads go through untracked channels. CRM sees half the picture.</p></div>
+      <div class="prob-cell"><div class="prob-cell__id">err:002</div><h3>Wasted Ad Spend</h3><p>Budget → pages with 60–80% bounce rate. Paying for clicks that never convert.</p></div>
+      <div class="prob-cell"><div class="prob-cell__id">err:003</div><h3>No Proof of ROI</h3><p>No evidence of return at decision stage. Deals stall. Pipeline value evaporates.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="deliverables" id="deliverables">
+  <div class="c">
+    <div class="prompt rv">catalyst.output()</div>
+    <h2 class="rv rd1">5 Deliverables. Zero fluff.</h2>
+    <table class="del-table rv rd2">
+      <thead>
+        <tr><th>ID</th><th>Deliverable</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>01</td><td>Final Deck</td><td>20–30 slides: findings, root causes, plan, economics, timeline</td></tr>
+        <tr><td>02</td><td>Funnel Map</td><td>TOFU / MOFU / BOFU + events + tracking schema</td></tr>
+        <tr><td>03</td><td>Action Tracker</td><td>Google Sheets: 2-week sprint + 3–5 initiatives with owners</td></tr>
+        <tr><td>04</td><td>Walkthrough</td><td>Recorded deck presentation with full commentary</td></tr>
+        <tr><td>05</td><td>Project Index</td><td>All links + "how to use this" guide</td></tr>
+      </tbody>
+    </table>
+    <div class="guarantee rv">
+      <span class="status"><span class="status__dot"></span></span>
+      <p>guarantee: 3 data-backed findings tied to initiatives — or full refund. exit_code: 0</p>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="c">
+    <div class="prompt rv">catalyst.timeline()</div>
+    <h2 class="rv rd1">15 Days. 4 Phases. Async-first.</h2>
+    <div class="timeline rv rd2">
+      <div class="tl-row">
+        <div class="tl-cell tl-cell--phase">A</div>
+        <div class="tl-cell tl-cell--days">day 0–1</div>
+        <div class="tl-cell tl-cell--desc"><h3>Onboarding</h3><p>Brief, data access, portal setup, rules of engagement.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-cell--phase">B</div>
+        <div class="tl-cell tl-cell--days">day 2–7</div>
+        <div class="tl-cell tl-cell--desc"><h3>Discovery</h3><p>Audit, hypotheses, competitors, leak map, unit economics.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-cell--phase">C</div>
+        <div class="tl-cell tl-cell--days">day 8–12</div>
+        <div class="tl-cell tl-cell--desc"><h3>Plan Build</h3><p>Root cause analysis, options matrix, initiative cards, funnel map.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-cell--phase">D</div>
+        <div class="tl-cell tl-cell--days">day 13–15</div>
+        <div class="tl-cell tl-cell--desc"><h3>Finalization</h3><p>27-point QA, pre-read, walkthrough, revisions, final delivery.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="methodology" id="methodology">
+  <div class="c">
+    <div class="prompt rv">catalyst.system.info()</div>
+    <h2 class="rv rd1">Codified expertise in an AI system.</h2>
+    <div class="meth-grid rv rd2">
+      <div class="meth-cell"><div class="meth-cell__v">73+</div><div class="meth-cell__l">Documents</div></div>
+      <div class="meth-cell"><div class="meth-cell__v">23</div><div class="meth-cell__l">Instruction Cards</div></div>
+      <div class="meth-cell"><div class="meth-cell__v">27</div><div class="meth-cell__l">QA Checks</div></div>
+      <div class="meth-cell"><div class="meth-cell__v">2</div><div class="meth-cell__l">Expert Gates</div></div>
+    </div>
+    <div class="meth-text rv">
+      <p>AI handles 80–90% of research. Human experts validate at 2 critical gates — post-Discovery (14 checks) and post-Plan Build (17 checks).</p>
+      <p>73+ methodology documents → AI system → expert validation. Neither pure AI nor pure consultancy. A deterministic system with intelligent orchestration.</p>
+    </div>
+  </div>
+</section>
+
+<section class="comparison" id="comparison">
+  <div class="c">
+    <div class="prompt rv">catalyst.compare()</div>
+    <h2 class="rv rd1">Positioning: between freelance and Big-4.</h2>
+    <table class="comp-table rv rd2">
+      <thead><tr><th></th><th>freelancer</th><th>the_catalyst</th><th>big-4</th></tr></thead>
+      <tbody>
+        <tr><td>price</td><td>$2–3K</td><td>$9,500</td><td>$50–150K+</td></tr>
+        <tr><td>timeline</td><td>1–2 weeks</td><td>15 days</td><td>12–16 weeks</td></tr>
+        <tr><td>methodology</td><td>none</td><td>73+ docs, 27-pt QA</td><td>opaque</td></tr>
+        <tr><td>output</td><td>pdf</td><td>action_plan + tracker</td><td>100-page report</td></tr>
+        <tr><td>actionability</td><td>low</td><td>start_monday()</td><td>needs_translation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="c">
+    <div class="prompt rv">catalyst.faq()</div>
+    <h2 class="rv rd1">Questions</h2>
+    <div class="faq-list rv rd2">
+      <div class="faq-item"><button class="faq-q"><span>what_data_access?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Read-only: GA4, ad platforms, CRM. No CRM → structured brief template provided.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>after_day_15?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Options: self-execute | implementation (fee credited) | 30-day advisory.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>is_ai_doing_everything?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>AI: 80–90%. Humans: 2 review gates, 31 total checkpoints.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>guarantee_details?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>3 data-backed findings → initiatives. Else: full_refund || credit_to_implementation.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="cta">
+  <div class="c">
+    <div class="cta-layout">
+      <div>
+        <div class="prompt rv">catalyst.start()</div>
+        <h2 class="rv rd1">Your pipeline has a leak. <span class="hl">Let's find it.</span></h2>
+        <p class="rv rd2">15 days → tactical action plan → Monday morning tasks ready.</p>
+        <a href="#" class="btn-term rv rd3">$ start_diagnosis →</a>
+      </div>
+      <div class="after-rows rv rd2">
+        <div class="after-row"><div class="after-cell after-cell--id">opt:A</div><div class="after-cell"><h3>Self-Execute</h3><p>Use Tracker + Deck with your team.</p></div></div>
+        <div class="after-row"><div class="after-cell after-cell--id">opt:B</div><div class="after-cell"><h3>We Implement</h3><p>Catalyst fee → credited to first invoice.</p></div></div>
+        <div class="after-row"><div class="after-cell after-cell--id">opt:C</div><div class="after-cell"><h3>Advisory</h3><p>30d async check-in + tracker review.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="c">
+    <div class="footer__inner">
+      <div class="footer__name">wonderflow_fz-llc // dubai</div>
+      <div class="footer__links"><a href="mailto:alex@wonderflow.agency">email</a><a href="https://wonderflow.ae">wonderflow.ae</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('v'); }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+document.querySelectorAll('.faq-q').forEach(b => b.addEventListener('click', () => {
+  const i = b.closest('.faq-item'), w = i.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('active'));
+  if (!w) i.classList.add('active');
+}));
+</script>
+</body>
+</html>

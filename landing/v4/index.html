@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Catalyst — Marketing Due Diligence | Wonderflow</title>
+<meta name="description" content="AI-powered marketing due diligence. 15 days. $9,500 fixed.">
+<style>
+/* ========================================================
+   V4: DARK PREMIUM
+   Bodoni Moda (serif display) + Jost (geometric sans body)
+   Dark foundation, warm stone tones, gold accent
+   Slow, confident, luxurious transitions
+   Think: McKinsey meets Stripe Annual Report
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0C0A09;
+  --bg-elevated: #1C1917;
+  --bg-card: #292524;
+  --text: #FAFAF9;
+  --text-muted: #A8A29E;
+  --text-dim: #78716C;
+  --gold: #CA8A04;
+  --gold-light: #EAB308;
+  --gold-dim: rgba(202,138,4,0.15);
+  --border: #44403C;
+  --border-dim: #292524;
+  --green: #22C55E;
+  --red: #EF4444;
+
+  --font-display: 'Bodoni Moda', 'Georgia', serif;
+  --font-body: 'Jost', 'Helvetica Neue', sans-serif;
+  --container: 1080px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+}
+h1 { font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: 1.15rem; font-weight: 500; }
+p { font-size: 1rem; line-height: 1.75; color: var(--text-muted); font-weight: 300; }
+
+.c { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+section { padding: 120px 0; }
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.rd1 { transition-delay: 150ms; }
+.rd2 { transition-delay: 300ms; }
+.rd3 { transition-delay: 450ms; }
+
+/* Gold line ornament */
+.gold-line {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+
+/* Label */
+.label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+/* === NAV === */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(12,10,9,0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-dim);
+  z-index: 100;
+}
+.nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+.nav__logo em { font-style: italic; color: var(--gold); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  padding: 10px 28px;
+  background: var(--gold);
+  color: var(--bg) !important;
+  font-weight: 600 !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.1em;
+  transition: background 0.3s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* === HERO === */
+.hero {
+  padding: 140px 0 120px;
+  border-bottom: 1px solid var(--border-dim);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(202,138,4,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h1 {
+  margin-bottom: 32px;
+  max-width: 700px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero__sub {
+  font-size: 1.15rem;
+  max-width: 540px;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+.hero__acts { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 40px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(202,138,4,0.25); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 32px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--gold); }
+
+/* Stats */
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 100px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.h-stat {
+  padding: 36px 0;
+  border-right: 1px solid var(--border);
+}
+.h-stat:last-child { border-right: none; }
+.h-stat__v {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--text);
+  font-weight: 400;
+}
+.h-stat__l {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* === PROBLEM === */
+.problem { border-bottom: 1px solid var(--border-dim); }
+.problem__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+.problems {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 1px solid var(--border);
+}
+.prob {
+  padding: 40px 32px;
+  border-right: 1px solid var(--border);
+  transition: background 0.5s var(--ease);
+}
+.prob:last-child { border-right: none; }
+.prob:hover { background: var(--bg-elevated); }
+.prob__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 3rem;
+  color: var(--border);
+  margin-bottom: 20px;
+  transition: color 0.4s;
+}
+.prob:hover .prob__num { color: var(--gold); }
+.prob h3 { margin-bottom: 12px; }
+.prob p { font-size: 0.88rem; }
+
+/* === DELIVERABLES === */
+.deliverables { border-bottom: 1px solid var(--border-dim); }
+.del-list { margin-top: 80px; }
+.del-row {
+  display: grid;
+  grid-template-columns: 60px 200px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-dim);
+  align-items: baseline;
+  transition: all 0.3s;
+}
+.del-row:first-child { border-top: 1px solid var(--border-dim); }
+.del-row:hover { padding-left: 12px; border-color: var(--gold); }
+.del-row__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-dim);
+}
+.del-row__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.del-row__desc { font-size: 0.88rem; color: var(--text-dim); max-width: none; }
+
+/* Guarantee */
+.guarantee {
+  margin-top: 80px;
+  padding: 48px;
+  border: 1px solid var(--gold);
+  background: var(--gold-dim);
+  position: relative;
+  overflow: hidden;
+}
+.guarantee::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--gold);
+}
+.guarantee h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+}
+.guarantee p { max-width: none; }
+
+/* === PROCESS === */
+.process { border-bottom: 1px solid var(--border-dim); }
+.phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 1px solid var(--border);
+}
+.phase {
+  padding: 48px 28px;
+  border-right: 1px solid var(--border);
+  transition: background 0.5s var(--ease);
+}
+.phase:last-child { border-right: none; }
+.phase:hover { background: var(--bg-elevated); }
+.phase__letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 4rem;
+  color: var(--border-dim);
+  line-height: 0.85;
+  margin-bottom: 24px;
+  transition: color 0.4s;
+}
+.phase:hover .phase__letter { color: var(--gold); }
+.phase__days {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.phase h3 { margin-bottom: 8px; }
+.phase p { font-size: 0.82rem; }
+
+/* === METHODOLOGY === */
+.methodology { border-bottom: 1px solid var(--border-dim); }
+.meth-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 1px solid var(--border);
+}
+.m-stat {
+  padding: 56px 32px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+  transition: background 0.5s;
+}
+.m-stat:last-child { border-right: none; }
+.m-stat:hover { background: var(--bg-elevated); }
+.m-stat__v {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--text);
+}
+.m-stat__l {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.meth-copy {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.meth-copy p { max-width: none; }
+
+/* === COMPARISON === */
+.comparison { border-bottom: 1px solid var(--border-dim); }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 80px;
+}
+.comp-table th {
+  padding: 16px 24px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.comp-table th:nth-child(3) { color: var(--gold); }
+.comp-table td {
+  padding: 18px 24px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-dim);
+}
+.comp-table td:nth-child(3) { color: var(--text); font-weight: 500; }
+.comp-table tr:hover td { color: var(--text); }
+.comp-table tr:hover td:nth-child(3) { color: var(--gold); }
+
+/* === FAQ === */
+.faq { border-bottom: 1px solid var(--border-dim); }
+.faq-list { margin-top: 80px; max-width: 760px; }
+.faq-item { border-bottom: 1px solid var(--border-dim); }
+.faq-item:first-child { border-top: 1px solid var(--border-dim); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-q__icon {
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  transition: transform 0.4s var(--ease), color 0.3s;
+}
+.faq-item.active .faq-q__icon { transform: rotate(45deg); color: var(--gold); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease), padding 0.5s;
+}
+.faq-item.active .faq-a { max-height: 200px; padding: 0 0 24px; }
+.faq-a p { max-width: none; }
+
+/* === FINAL CTA === */
+.final-cta {
+  text-align: center;
+  padding: 160px 0;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(202,138,4,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta h2 {
+  margin-bottom: 24px;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+.final-cta h2 em { font-style: italic; color: var(--gold); }
+.final-cta p { max-width: 460px; margin: 0 auto 48px; }
+
+.after-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.after-item {
+  padding: 36px 28px;
+  border-right: 1px solid var(--border);
+  transition: background 0.4s;
+}
+.after-item:last-child { border-right: none; }
+.after-item:hover { background: var(--bg-elevated); }
+.after-item__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.after-item h3 { margin-bottom: 8px; }
+.after-item p { font-size: 0.82rem; max-width: none; }
+
+/* === FOOTER === */
+footer {
+  border-top: 1px solid var(--border-dim);
+  padding: 36px 0;
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__name {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+.footer__links { display: flex; gap: 24px; }
+.footer__links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.3s; }
+.footer__links a:hover { color: var(--gold); }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  section { padding: 80px 0; }
+  .hero { padding: 100px 0 80px; }
+  .hero__stats { grid-template-columns: 1fr 1fr; }
+  .h-stat { border-bottom: 1px solid var(--border); }
+  .problem__header { grid-template-columns: 1fr; gap: 24px; }
+  .problems { grid-template-columns: 1fr; }
+  .prob { border-right: none; border-bottom: 1px solid var(--border); }
+  .prob:last-child { border-bottom: none; }
+  .del-row { grid-template-columns: 40px 1fr; }
+  .del-row__desc { grid-column: 1 / -1; }
+  .phases { grid-template-columns: 1fr 1fr; }
+  .phase { border-bottom: 1px solid var(--border); }
+  .meth-grid { grid-template-columns: 1fr 1fr; }
+  .m-stat { border-bottom: 1px solid var(--border); }
+  .meth-copy { grid-template-columns: 1fr; gap: 24px; }
+  .after-grid { grid-template-columns: 1fr; }
+  .after-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .after-item:last-child { border-bottom: none; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .final-cta { padding: 100px 0; }
+}
+@media (max-width: 600px) {
+  .hero__stats { grid-template-columns: 1fr; }
+  .phases { grid-template-columns: 1fr; }
+  .phase { border-right: none; }
+  .meth-grid { grid-template-columns: 1fr; }
+  .m-stat { border-right: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="c">
+    <div class="nav__inner">
+      <div class="nav__logo">The <em>Catalyst</em></div>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#deliverables">Deliverables</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="nav-cta">Start a Project</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="c">
+    <div class="label reveal">Marketing Due Diligence</div>
+    <h1 class="reveal rd1">Your pipeline has a leak. <em>We find it.</em></h1>
+    <p class="hero__sub reveal rd2">AI-powered marketing audit that diagnoses the real reasons your growth stalls — and delivers a tactical plan to fix them. In 15 working days.</p>
+    <div class="hero__acts reveal rd3">
+      <a href="#cta" class="btn-gold">Get Your Diagnosis →</a>
+      <a href="#process" class="btn-ghost">See the Process</a>
+    </div>
+    <div class="hero__stats reveal">
+      <div class="h-stat"><div class="h-stat__v">$9,500</div><div class="h-stat__l">Fixed price</div></div>
+      <div class="h-stat"><div class="h-stat__v">15 Days</div><div class="h-stat__l">To action plan</div></div>
+      <div class="h-stat"><div class="h-stat__v">73+</div><div class="h-stat__l">Methodology docs</div></div>
+      <div class="h-stat"><div class="h-stat__v">27-pt</div><div class="h-stat__l">QA gate</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="c">
+    <div class="problem__header">
+      <div>
+        <div class="label reveal">The Problem</div>
+        <h2 class="reveal rd1">You're spending.<br>But not growing.</h2>
+      </div>
+      <p class="reveal rd2">Most teams run on intuition. The Catalyst replaces guesswork with data-backed root cause analysis — fixing structure, not symptoms.</p>
+    </div>
+    <div class="problems reveal">
+      <div class="prob"><div class="prob__num">I</div><h3>Invisible Leads</h3><p>40–60% of leads go untracked. Your CRM sees half the picture.</p></div>
+      <div class="prob"><div class="prob__num">II</div><h3>Wasted Spend</h3><p>Budget flows to pages with 60–80% bounce. Clicks that never convert.</p></div>
+      <div class="prob"><div class="prob__num">III</div><h3>No Proof of ROI</h3><p>At the decision stage, no evidence of return. Deals stall.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="deliverables" id="deliverables">
+  <div class="c">
+    <div class="label reveal">What You Get</div>
+    <h2 class="reveal rd1">Five deliverables.<br>Zero fluff.</h2>
+    <div class="del-list reveal rd2">
+      <div class="del-row"><div class="del-row__num">i.</div><div class="del-row__title">Final Deck</div><div class="del-row__desc">20–30 slides: findings, root causes, plan, economics, timeline.</div></div>
+      <div class="del-row"><div class="del-row__num">ii.</div><div class="del-row__title">Funnel Map</div><div class="del-row__desc">Single page: TOFU / MOFU / BOFU + events + tracking schema.</div></div>
+      <div class="del-row"><div class="del-row__num">iii.</div><div class="del-row__title">Action Tracker</div><div class="del-row__desc">Google Sheets: 2-week sprint + 3–5 initiatives with owners.</div></div>
+      <div class="del-row"><div class="del-row__num">iv.</div><div class="del-row__title">Walkthrough</div><div class="del-row__desc">Recorded presentation of the deck with full commentary.</div></div>
+      <div class="del-row"><div class="del-row__num">v.</div><div class="del-row__title">Project Index</div><div class="del-row__desc">Links + guide: "how to use this" for your team.</div></div>
+    </div>
+    <div class="guarantee reveal">
+      <h3>3 Findings — or Money Back</h3>
+      <p>If the plan doesn't contain at least 3 data-backed insights you didn't know — each tied to a concrete initiative — full refund. No questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="c">
+    <div class="label reveal">The Process</div>
+    <h2 class="reveal rd1">15 Days. 4 Phases.<br>Async-first.</h2>
+    <div class="phases reveal rd2">
+      <div class="phase"><div class="phase__letter">A</div><div class="phase__days">Day 0–1</div><h3>Onboarding</h3><p>Brief, data access, portal, rules of engagement.</p></div>
+      <div class="phase"><div class="phase__letter">B</div><div class="phase__days">Day 2–7</div><h3>Discovery</h3><p>Audit, hypotheses, competitors, leak map, unit economics.</p></div>
+      <div class="phase"><div class="phase__letter">C</div><div class="phase__days">Day 8–12</div><h3>Plan Build</h3><p>Root cause, options matrix, initiative cards, funnel map.</p></div>
+      <div class="phase"><div class="phase__letter">D</div><div class="phase__days">Day 13–15</div><h3>Finalization</h3><p>27-pt QA, pre-read, walkthrough, revisions, delivery.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="methodology" id="methodology">
+  <div class="c">
+    <div class="label reveal">The System</div>
+    <h2 class="reveal rd1">Codified expertise<br>in an AI system.</h2>
+    <div class="meth-grid reveal rd2">
+      <div class="m-stat"><div class="m-stat__v">73+</div><div class="m-stat__l">Documents</div></div>
+      <div class="m-stat"><div class="m-stat__v">23</div><div class="m-stat__l">Instruction Cards</div></div>
+      <div class="m-stat"><div class="m-stat__v">27</div><div class="m-stat__l">QA Checks</div></div>
+      <div class="m-stat"><div class="m-stat__v">2</div><div class="m-stat__l">Expert Gates</div></div>
+    </div>
+    <div class="meth-copy reveal">
+      <p>AI handles 80–90% of research and analysis. Human experts review at two critical gates — after Discovery and after Plan Build.</p>
+      <p>This is 73+ methodology documents codified into an AI system with expert validation. Not AI without context. Not experts without speed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="comparison" id="comparison">
+  <div class="c">
+    <div class="label reveal">Positioning</div>
+    <h2 class="reveal rd1">Between freelance<br>and Big-4.</h2>
+    <table class="comp-table reveal rd2">
+      <thead><tr><th></th><th>Freelancer</th><th>The Catalyst</th><th>Big-4</th></tr></thead>
+      <tbody>
+        <tr><td>Price</td><td>$2–3K</td><td>$9,500</td><td>$50–150K+</td></tr>
+        <tr><td>Timeline</td><td>1–2 weeks</td><td>15 days</td><td>12–16 weeks</td></tr>
+        <tr><td>Methodology</td><td>None</td><td>73+ docs, 27-pt QA</td><td>Opaque</td></tr>
+        <tr><td>Output</td><td>PDF</td><td>Action plan + tracker</td><td>100-page report</td></tr>
+        <tr><td>Actionability</td><td>Low</td><td>Start Monday</td><td>Needs translation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="c">
+    <div class="label reveal">FAQ</div>
+    <h2 class="reveal rd1">Questions</h2>
+    <div class="faq-list reveal rd2">
+      <div class="faq-item"><button class="faq-q"><span>What data access do you need?</span><span class="faq-q__icon">+</span></button><div class="faq-a"><p>Read-only access to GA4, ad platforms, and CRM. No CRM? We provide a structured brief.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>What happens after Day 15?</span><span class="faq-q__icon">+</span></button><div class="faq-a"><p>Self-execute, implementation with us (fee credited), or 30-day advisory support.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Is the AI doing all the work?</span><span class="faq-q__icon">+</span></button><div class="faq-a"><p>AI handles 80–90%. Senior experts validate at two gates with 31 total checkpoints.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>What's the guarantee?</span><span class="faq-q__icon">+</span></button><div class="faq-a"><p>3 data-backed findings tied to initiatives — or full refund. Can be credited toward implementation.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="cta">
+  <div class="c">
+    <div class="label reveal">Ready?</div>
+    <h2 class="reveal rd1">Your pipeline<br>has a <em>leak.</em></h2>
+    <p class="reveal rd2">15 days from now, you'll have a tactical action plan with the first tasks ready for Monday morning.</p>
+    <a href="#" class="btn-gold reveal rd3">Start Your Catalyst →</a>
+    <div class="after-grid reveal">
+      <div class="after-item"><div class="after-item__label">Option A</div><h3>Self-Execute</h3><p>Use the Tracker and Deck with your team.</p></div>
+      <div class="after-item"><div class="after-item__label">Option B</div><h3>We Implement</h3><p>Catalyst fee credited to first invoice.</p></div>
+      <div class="after-item"><div class="after-item__label">Option C</div><h3>Advisory</h3><p>30-day async check-in + tracker review.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="c">
+    <div class="footer__inner">
+      <div class="footer__name">Wonderflow FZ-LLC · Dubai</div>
+      <div class="footer__links"><a href="mailto:alex@wonderflow.agency">alex@wonderflow.agency</a><a href="https://wonderflow.ae">wonderflow.ae</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.faq-q').forEach(b => b.addEventListener('click', () => {
+  const i = b.closest('.faq-item'), w = i.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('active'));
+  if (!w) i.classList.add('active');
+}));
+</script>
+</body>
+</html>

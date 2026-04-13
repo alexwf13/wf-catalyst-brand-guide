@@ -5,86 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Catalyst — Landing Page Variants</title>
 <style>
-@font-face {
-  font-family: 'Neutro';
-  src: url('fonts/Neutro-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-display: swap;
-}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #000;
+  background: #0A0A0A;
   color: #fff;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 60px 24px;
 }
+.container { max-width: 960px; margin: 0 auto; }
 h1 {
-  font-family: 'Neutro', 'Arial Black', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .sub {
-  color: #888;
-  font-size: 1rem;
+  color: #666;
+  font-size: 0.88rem;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 16px;
 }
+.group-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #666;
+  margin-top: 48px;
+  margin-bottom: 20px;
+  padding-top: 48px;
+  border-top: 1px solid #222;
+}
+.group-label:first-of-type { border-top: none; padding-top: 32px; }
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 960px;
-  width: 100%;
+  gap: 16px;
 }
 .card {
-  border: 3px solid #fff;
-  padding: 40px 32px;
+  border: 1px solid #333;
+  padding: 32px 24px;
   text-decoration: none;
   color: #fff;
-  transition: all 0.2s;
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
   position: relative;
+  background: #111;
 }
 .card:hover {
-  background: #FCD84D;
-  color: #000;
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0px #fff;
+  border-color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
 .card__num {
-  font-family: 'Neutro', 'Arial Black', sans-serif;
-  font-size: 3rem;
-  line-height: 0.9;
-  margin-bottom: 16px;
-  opacity: 0.15;
-}
-.card:hover .card__num { opacity: 1; }
-.card__title {
-  font-family: 'Neutro', 'Arial Black', sans-serif;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 12px;
+  opacity: 0.12;
+  transition: opacity 0.2s;
+}
+.card:hover .card__num { opacity: 0.5; }
+.card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 .card__desc {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1.5;
-  opacity: 0.6;
+  color: #888;
 }
-.card:hover .card__desc { opacity: 1; }
+.card__meta {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #222;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-size: 0.6rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border: 1px solid #333;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 .footer-note {
   margin-top: 60px;
-  font-size: 0.75rem;
-  color: #555;
+  font-size: 0.68rem;
+  color: #444;
   text-align: center;
 }
 @media (max-width: 700px) {
@@ -93,26 +105,55 @@ h1 {
 </style>
 </head>
 <body>
+<div class="container">
 
 <h1>The Catalyst</h1>
-<p class="sub">Landing Page Design Variants — Choose your direction</p>
+<p class="sub">Landing page design exploration — 6 directions</p>
 
+<div class="group-label">Group A — Neo-Brutalist Variations</div>
 <div class="cards">
   <a href="v1/" class="card">
     <div class="card__num">V1</div>
     <div class="card__title">Classic Neubrutalism</div>
-    <div class="card__desc">3px borders, hard shadows, flat fills, blocky modular layout. Traditional neo-brutalist approach — bold, direct, operational.</div>
+    <div class="card__desc">3px borders, hard shadows, flat fills, blocky modular layout. Traditional neo-brutalist.</div>
+    <div class="card__meta"><span class="chip">Neutro</span><span class="chip">Blue palette</span><span class="chip">Yellow CTA</span></div>
   </a>
   <a href="v2/" class="card">
     <div class="card__num">V2</div>
     <div class="card__title">Kinetic Brutalism</div>
-    <div class="card__desc">Same DNA + scroll animations, marquee strips, hover inversions, floating elements. More energy and movement.</div>
+    <div class="card__desc">Neo-brut + scroll animations, marquee strips, hover inversions, movement.</div>
+    <div class="card__meta"><span class="chip">Neutro</span><span class="chip">Marquee</span><span class="chip">Animated</span></div>
   </a>
   <a href="v3/" class="card">
     <div class="card__num">V3</div>
-    <div class="card__title">Neo-Brut × Exaggerated Minimal</div>
-    <div class="card__desc">Brutalist borders + massive typography + generous whitespace. Restrained, sophisticated, mature B2B feel.</div>
+    <div class="card__title">Neo-Brut × Exaggerated</div>
+    <div class="card__desc">Brutalist borders + massive typography + generous whitespace. Mature B2B.</div>
+    <div class="card__meta"><span class="chip">Neutro</span><span class="chip">Monochrome</span><span class="chip">6rem hero</span></div>
   </a>
+</div>
+
+<div class="group-label">Group B — Completely Different Directions</div>
+<div class="cards">
+  <a href="v4/" class="card">
+    <div class="card__num">V4</div>
+    <div class="card__title">Dark Premium</div>
+    <div class="card__desc">Bodoni Moda serif + Jost sans. Dark bg, gold accent, luxury consultancy aesthetic.</div>
+    <div class="card__meta"><span class="chip">Serif</span><span class="chip">Dark</span><span class="chip">Gold accent</span></div>
+  </a>
+  <a href="v5/" class="card">
+    <div class="card__num">V5</div>
+    <div class="card__title">Swiss Editorial</div>
+    <div class="card__desc">Libre Bodoni + Public Sans. Magazine layout, chapter storytelling, pink accent.</div>
+    <div class="card__meta"><span class="chip">Serif</span><span class="chip">Light</span><span class="chip">12-col grid</span></div>
+  </a>
+  <a href="v6/" class="card">
+    <div class="card__num">V6</div>
+    <div class="card__title">Data Terminal</div>
+    <div class="card__desc">JetBrains Mono only. OLED dark, green/cyan/amber status colors, CLI metaphor.</div>
+    <div class="card__meta"><span class="chip">Monospace</span><span class="chip">Terminal</span><span class="chip">Data-dense</span></div>
+  </a>
+</div>
+
 </div>
 
 <p class="footer-note">Wonderflow · The Catalyst Landing Exploration · 2026</p>
