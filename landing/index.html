@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Catalyst — Landing Page Variants</title>
+<style>
+@font-face {
+  font-family: 'Neutro';
+  src: url('fonts/Neutro-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+h1 {
+  font-family: 'Neutro', 'Arial Black', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.sub {
+  color: #888;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  width: 100%;
+}
+.card {
+  border: 3px solid #fff;
+  padding: 40px 32px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s;
+  position: relative;
+}
+.card:hover {
+  background: #FCD84D;
+  color: #000;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px #fff;
+}
+.card__num {
+  font-family: 'Neutro', 'Arial Black', sans-serif;
+  font-size: 3rem;
+  line-height: 0.9;
+  margin-bottom: 16px;
+  opacity: 0.15;
+}
+.card:hover .card__num { opacity: 1; }
+.card__title {
+  font-family: 'Neutro', 'Arial Black', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.card__desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.6;
+}
+.card:hover .card__desc { opacity: 1; }
+.footer-note {
+  margin-top: 60px;
+  font-size: 0.75rem;
+  color: #555;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<h1>The Catalyst</h1>
+<p class="sub">Landing Page Design Variants — Choose your direction</p>
+
+<div class="cards">
+  <a href="v1/" class="card">
+    <div class="card__num">V1</div>
+    <div class="card__title">Classic Neubrutalism</div>
+    <div class="card__desc">3px borders, hard shadows, flat fills, blocky modular layout. Traditional neo-brutalist approach — bold, direct, operational.</div>
+  </a>
+  <a href="v2/" class="card">
+    <div class="card__num">V2</div>
+    <div class="card__title">Kinetic Brutalism</div>
+    <div class="card__desc">Same DNA + scroll animations, marquee strips, hover inversions, floating elements. More energy and movement.</div>
+  </a>
+  <a href="v3/" class="card">
+    <div class="card__num">V3</div>
+    <div class="card__title">Neo-Brut × Exaggerated Minimal</div>
+    <div class="card__desc">Brutalist borders + massive typography + generous whitespace. Restrained, sophisticated, mature B2B feel.</div>
+  </a>
+</div>
+
+<p class="footer-note">Wonderflow · The Catalyst Landing Exploration · 2026</p>
+
+</body>
+</html>

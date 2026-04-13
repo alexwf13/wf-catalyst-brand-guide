@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Catalyst — Marketing Due Diligence | Wonderflow</title>
+<meta name="description" content="AI-powered marketing due diligence. 15 days. $9,500. Tactical action plan backed by 73+ methodology documents.">
+<style>
+/* ========================================================
+   V3: NEO-BRUT × EXAGGERATED MINIMAL
+   Brutalist DNA (borders, shadows, uppercase) BUT with:
+   - Massive typography (hero 6rem+)
+   - Generous whitespace (sections 120px+)
+   - Restrained color (mostly B/W + 1 accent at a time)
+   - Sophisticated spacing rhythm
+   - Mature B2B feel
+   ======================================================== */
+
+@font-face {
+  font-family: 'Neutro';
+  src: url('../fonts/Neutro-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --black: #000000;
+  --near-black: #111111;
+  --gray-900: #1A1A1A;
+  --gray-700: #444444;
+  --gray-500: #888888;
+  --gray-300: #CCCCCC;
+  --gray-100: #F0F0F0;
+  --white: #FFFFFF;
+  --off-white: #FAFAFA;
+
+  /* Single accent — used sparingly */
+  --accent: #198ED5;
+  --accent-light: #93D1F7;
+  --yellow: #FCD84D;
+  --green: #00B176;
+  --red: #FD4E2C;
+
+  --font-display: 'Neutro', 'Arial Black', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --border: 3px solid var(--black);
+  --border-light: 1px solid var(--gray-300);
+  --shadow: 6px 6px 0px var(--black);
+  --container: 1100px;
+  --section-gap: 120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* === TYPOGRAPHY — EXAGGERATED === */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: -0.03em;
+}
+h2 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  letter-spacing: -0.02em;
+}
+h3 { font-size: 1.05rem; line-height: 1.2; letter-spacing: 0; }
+p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--gray-700);
+  max-width: 640px;
+}
+
+.c { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+section { padding: var(--section-gap) 0; }
+
+/* === REVEAL === */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 150ms; }
+.reveal-d2 { transition-delay: 300ms; }
+.reveal-d3 { transition-delay: 450ms; }
+
+/* === NAV — MINIMAL === */
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  border-bottom: var(--border);
+  z-index: 100;
+}
+.nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-cta {
+  padding: 10px 24px;
+  background: var(--black);
+  color: var(--white) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.06em;
+}
+
+/* === HERO — EXAGGERATED === */
+.hero {
+  padding: 100px 0 var(--section-gap);
+  border-bottom: var(--border);
+}
+.hero__label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-500);
+  margin-bottom: 32px;
+}
+.hero h1 {
+  margin-bottom: 40px;
+}
+.hero h1 .thin {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--gray-500);
+}
+.hero__sub {
+  font-size: 1.15rem;
+  margin-bottom: 48px;
+}
+.hero__acts { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+/* CTA — refined brutalist */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 40px;
+  background: var(--yellow);
+  color: var(--black);
+  border: var(--border);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow);
+  transition: transform 0.12s, box-shadow 0.12s;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px var(--black);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 32px;
+  color: var(--black);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-bottom: 2px solid var(--black);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hero stats — minimal */
+.hero__stats {
+  display: flex;
+  gap: 0;
+  margin-top: 80px;
+  border-top: var(--border);
+}
+.hero-stat {
+  flex: 1;
+  padding: 32px 0;
+  border-right: var(--border);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat__v {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.hero-stat__l {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* === PROBLEM — OVERSIZED NUMBERS === */
+.problem { border-bottom: var(--border); }
+.problem__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+.problem__items {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: var(--border);
+}
+.problem-item {
+  padding: 40px 32px;
+  border-right: var(--border);
+  position: relative;
+}
+.problem-item:last-child { border-right: none; }
+.problem-item__num {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 0.85;
+  color: var(--gray-100);
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+  transition: color 0.3s;
+}
+.problem-item:hover .problem-item__num { color: var(--red); }
+.problem-item h3 { margin-bottom: 12px; }
+.problem-item p { font-size: 0.88rem; }
+
+/* === DELIVERABLES === */
+.deliverables { border-bottom: var(--border); }
+.del-list { margin-top: 80px; }
+.del-row {
+  display: grid;
+  grid-template-columns: 80px 240px 1fr;
+  gap: 0;
+  border-bottom: var(--border);
+  align-items: baseline;
+  padding: 28px 0;
+  transition: background 0.2s;
+}
+.del-row:first-child { border-top: var(--border); }
+.del-row:hover { background: var(--off-white); }
+.del-row__num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.del-row__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.del-row__desc {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  max-width: none;
+}
+
+/* Guarantee — horizontal bar */
+.guarantee {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: var(--border);
+}
+.guarantee__badge {
+  background: var(--yellow);
+  padding: 32px;
+  border-right: var(--border);
+  display: flex;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(180deg);
+}
+.guarantee__content {
+  padding: 32px 40px;
+}
+.guarantee__content h3 { margin-bottom: 8px; font-size: 1.3rem; }
+.guarantee__content p { font-size: 0.95rem; }
+
+/* === PROCESS — DARK, MINIMAL === */
+.process {
+  background: var(--black);
+  color: var(--white);
+  border-bottom: var(--border);
+}
+.process h2 { color: var(--white); }
+.process p { color: var(--gray-500); }
+.process .section-label { color: var(--gray-500); }
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+}
+.phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 3px solid rgba(255,255,255,0.2);
+}
+.phase {
+  padding: 40px 28px;
+  border-right: 3px solid rgba(255,255,255,0.2);
+  transition: background 0.3s;
+}
+.phase:last-child { border-right: none; }
+.phase:hover { background: rgba(255,255,255,0.05); }
+.phase__letter {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 0.85;
+  color: rgba(255,255,255,0.08);
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  transition: color 0.3s;
+}
+.phase:hover .phase__letter { color: var(--accent); }
+.phase__days {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.phase h3 { color: var(--white); margin-bottom: 8px; }
+.phase p { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+
+/* === METHODOLOGY — STATS WALL === */
+.methodology { border-bottom: var(--border); }
+.meth-wall {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: var(--border);
+}
+.meth-stat {
+  padding: 48px 32px;
+  border-right: var(--border);
+  text-align: center;
+  transition: all 0.3s;
+}
+.meth-stat:last-child { border-right: none; }
+.meth-stat:hover { background: var(--off-white); }
+.meth-stat__v {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--black);
+}
+.meth-stat__l {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.meth-text {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.meth-text p { max-width: none; }
+
+/* === COMPARISON — CLEAN TABLE === */
+.comparison { border-bottom: var(--border); }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 80px;
+  border: var(--border);
+}
+.comp-table th {
+  padding: 20px 24px;
+  border: var(--border);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+  background: var(--off-white);
+}
+.comp-table th:nth-child(3) {
+  background: var(--black);
+  color: var(--white);
+}
+.comp-table td {
+  padding: 16px 24px;
+  border: var(--border);
+  font-size: 0.88rem;
+}
+.comp-table td:nth-child(3) {
+  font-weight: 700;
+  background: var(--off-white);
+}
+.comp-table tr:hover td { background: var(--gray-100); }
+.comp-table tr:hover td:nth-child(3) { background: var(--yellow); }
+
+/* === FAQ — MINIMAL === */
+.faq { border-bottom: var(--border); }
+.faq-grid {
+  margin-top: 80px;
+  max-width: 800px;
+}
+.faq-item {
+  border-bottom: var(--border);
+}
+.faq-item:first-child { border-top: var(--border); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-q__icon {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  color: var(--gray-300);
+}
+.faq-item.active .faq-q__icon {
+  transform: rotate(45deg);
+  color: var(--black);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s;
+  padding: 0;
+}
+.faq-item.active .faq-a {
+  max-height: 200px;
+  padding: 0 0 24px;
+}
+.faq-a p { font-size: 0.92rem; max-width: none; }
+
+/* === FINAL CTA — FULL BLACK === */
+.final-cta {
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 160px 0;
+}
+.final-cta .section-label { color: var(--gray-500); }
+.final-cta h2 {
+  color: var(--white);
+  margin-bottom: 24px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+.final-cta p {
+  color: var(--gray-500);
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+.final-cta .btn-primary {
+  background: var(--yellow);
+  font-size: 1rem;
+  padding: 24px 48px;
+  box-shadow: 8px 8px 0px rgba(255,255,255,0.15);
+}
+.final-cta .btn-primary:hover {
+  box-shadow: 4px 4px 0px rgba(255,255,255,0.15);
+}
+
+.after-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border: 3px solid rgba(255,255,255,0.12);
+  text-align: left;
+}
+.after-opt {
+  padding: 32px;
+  border-right: 3px solid rgba(255,255,255,0.12);
+  transition: background 0.3s;
+}
+.after-opt:last-child { border-right: none; }
+.after-opt:hover { background: rgba(255,255,255,0.03); }
+.after-opt__label {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-light);
+  margin-bottom: 12px;
+}
+.after-opt h3 { color: var(--white); margin-bottom: 8px; }
+.after-opt p { font-size: 0.82rem; color: var(--gray-500); max-width: none; }
+
+/* === FOOTER — WHISPER === */
+footer {
+  border-top: var(--border);
+  padding: 32px 0;
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__name {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-500);
+}
+.footer__links { display: flex; gap: 24px; }
+.footer__links a {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  transition: color 0.2s;
+}
+.footer__links a:hover { color: var(--black); }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  :root { --section-gap: 80px; }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4rem); }
+  .hero__stats { flex-direction: column; }
+  .hero-stat { border-right: none; border-bottom: var(--border); }
+  .hero-stat:last-child { border-bottom: none; }
+  .problem__header { grid-template-columns: 1fr; gap: 24px; }
+  .problem__items { grid-template-columns: 1fr; }
+  .problem-item { border-right: none; border-bottom: var(--border); }
+  .problem-item:last-child { border-bottom: none; }
+  .del-row { grid-template-columns: 60px 1fr; }
+  .del-row__desc { grid-column: 1 / -1; margin-top: 8px; }
+  .phases { grid-template-columns: 1fr 1fr; }
+  .phase { border-bottom: 3px solid rgba(255,255,255,0.2); }
+  .meth-wall { grid-template-columns: 1fr 1fr; }
+  .meth-stat { border-bottom: var(--border); }
+  .meth-text { grid-template-columns: 1fr; gap: 24px; }
+  .after-options { grid-template-columns: 1fr; }
+  .after-opt { border-right: none; border-bottom: 3px solid rgba(255,255,255,0.12); }
+  .after-opt:last-child { border-bottom: none; }
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+@media (max-width: 600px) {
+  .phases { grid-template-columns: 1fr; }
+  .phase { border-right: none; }
+  .meth-wall { grid-template-columns: 1fr; }
+  .meth-stat { border-right: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="c">
+    <div class="nav__inner">
+      <div class="nav__logo">The Catalyst</div>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#deliverables">Deliverables</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="nav-cta">Start a Project</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="c">
+    <div class="hero__label reveal">Marketing Due Diligence</div>
+    <h1 class="reveal reveal-d1">Stop<br>guessing.<br><span class="thin">Start diagnosing.</span></h1>
+    <p class="hero__sub reveal reveal-d2">AI-powered marketing audit that finds the real reasons your pipeline leaks money — and delivers a tactical plan to fix them. In 15 working days.</p>
+    <div class="hero__acts reveal reveal-d3">
+      <a href="#cta" class="btn-primary">Get Your Diagnosis →</a>
+      <a href="#process" class="btn-secondary">See the Process ↓</a>
+    </div>
+    <div class="hero__stats reveal">
+      <div class="hero-stat">
+        <div class="hero-stat__v">$9,500</div>
+        <div class="hero-stat__l">Fixed price</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__v">15 Days</div>
+        <div class="hero-stat__l">Kickoff to plan</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__v">73+</div>
+        <div class="hero-stat__l">Methodology docs</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__v">27-pt</div>
+        <div class="hero-stat__l">QA checklist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="c">
+    <div class="problem__header">
+      <div>
+        <div class="section-label reveal">The Problem</div>
+        <h2 class="reveal reveal-d1">You're spending.<br>But not growing.</h2>
+      </div>
+      <div>
+        <p class="reveal reveal-d2">Most marketing teams run on intuition. The Catalyst replaces guesswork with data-backed root cause analysis — so you fix structure, not symptoms.</p>
+      </div>
+    </div>
+    <div class="problem__items reveal">
+      <div class="problem-item">
+        <div class="problem-item__num">01</div>
+        <h3>Invisible Leads</h3>
+        <p>40–60% of leads go through untracked channels. Your CRM sees half the picture.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-item__num">02</div>
+        <h3>Wasted Ad Spend</h3>
+        <p>Budget flows to pages with 60–80% bounce. You pay for clicks that never convert.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-item__num">03</div>
+        <h3>No Proof of ROI</h3>
+        <p>At the decision stage, there's no evidence of return. Deals stall. Value evaporates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables" id="deliverables">
+  <div class="c">
+    <div class="section-label reveal">What You Get</div>
+    <h2 class="reveal reveal-d1">Five deliverables.<br>Zero fluff.</h2>
+    <div class="del-list reveal reveal-d2">
+      <div class="del-row">
+        <div class="del-row__num">01</div>
+        <div class="del-row__title">Final Deck</div>
+        <div class="del-row__desc">20–30 slides: findings, root causes, action plan, economics, timeline.</div>
+      </div>
+      <div class="del-row">
+        <div class="del-row__num">02</div>
+        <div class="del-row__title">Funnel Map</div>
+        <div class="del-row__desc">Single page: TOFU / MOFU / BOFU with events and tracking schema.</div>
+      </div>
+      <div class="del-row">
+        <div class="del-row__num">03</div>
+        <div class="del-row__title">Action Tracker</div>
+        <div class="del-row__desc">Google Sheets: 2-week sprint + 3–5 initiatives with owners.</div>
+      </div>
+      <div class="del-row">
+        <div class="del-row__num">04</div>
+        <div class="del-row__title">Walkthrough</div>
+        <div class="del-row__desc">Recorded presentation of the final deck with full commentary.</div>
+      </div>
+      <div class="del-row">
+        <div class="del-row__num">05</div>
+        <div class="del-row__title">Project Index</div>
+        <div class="del-row__desc">Links + guide: "how to use this" for your team.</div>
+      </div>
+    </div>
+    <div class="guarantee reveal">
+      <div class="guarantee__badge">Guarantee</div>
+      <div class="guarantee__content">
+        <h3>3 Findings or Money Back</h3>
+        <p>If the plan doesn't contain at least 3 data-backed insights you didn't know — each tied to a concrete initiative — full refund. No questions asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="c">
+    <div class="section-label reveal">The Process</div>
+    <h2 class="reveal reveal-d1">15 Days.<br>4 Phases. Async-first.</h2>
+    <div class="phases reveal reveal-d2">
+      <div class="phase">
+        <div class="phase__letter">A</div>
+        <div class="phase__days">Day 0–1</div>
+        <h3>Onboarding</h3>
+        <p>Brief, data access, portal setup, rules of engagement.</p>
+      </div>
+      <div class="phase">
+        <div class="phase__letter">B</div>
+        <div class="phase__days">Day 2–7</div>
+        <h3>Discovery</h3>
+        <p>Audit, hypotheses, competitors, barriers, leak map, unit economics.</p>
+      </div>
+      <div class="phase">
+        <div class="phase__letter">C</div>
+        <div class="phase__days">Day 8–12</div>
+        <h3>Plan Build</h3>
+        <p>Root cause analysis, options matrix, initiative cards, funnel map, deck.</p>
+      </div>
+      <div class="phase">
+        <div class="phase__letter">D</div>
+        <div class="phase__days">Day 13–15</div>
+        <h3>Finalization</h3>
+        <p>27-point QA, pre-read, walkthrough, revisions, final package.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="methodology" id="methodology">
+  <div class="c">
+    <div class="section-label reveal">The System</div>
+    <h2 class="reveal reveal-d1">Codified expertise<br>in an AI system.</h2>
+    <div class="meth-wall reveal reveal-d2">
+      <div class="meth-stat">
+        <div class="meth-stat__v">73+</div>
+        <div class="meth-stat__l">Documents</div>
+      </div>
+      <div class="meth-stat">
+        <div class="meth-stat__v">23</div>
+        <div class="meth-stat__l">Instruction Cards</div>
+      </div>
+      <div class="meth-stat">
+        <div class="meth-stat__v">27</div>
+        <div class="meth-stat__l">QA Checkpoints</div>
+      </div>
+      <div class="meth-stat">
+        <div class="meth-stat__v">2</div>
+        <div class="meth-stat__l">Expert Gates</div>
+      </div>
+    </div>
+    <div class="meth-text reveal">
+      <p>AI does 80–90% of research and analysis. Human experts review at two critical gates — after Discovery (14 checks) and after Plan Build (17 checks).</p>
+      <p>This isn't AI without context or experts without speed. It's 73+ methodology documents codified into an AI system with expert validation. Impossible to copy fast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison" id="comparison">
+  <div class="c">
+    <div class="section-label reveal">How We Compare</div>
+    <h2 class="reveal reveal-d1">Between freelance<br>and Big-4.</h2>
+    <table class="comp-table reveal reveal-d2">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Freelancer</th>
+          <th>The Catalyst</th>
+          <th>Big-4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Price</td><td>$2–3K</td><td>$9,500</td><td>$50–150K+</td></tr>
+        <tr><td>Timeline</td><td>1–2 weeks</td><td>15 days</td><td>12–16 weeks</td></tr>
+        <tr><td>Methodology</td><td>None</td><td>73+ docs</td><td>Opaque</td></tr>
+        <tr><td>Output</td><td>PDF</td><td>Action plan</td><td>100-pg report</td></tr>
+        <tr><td>Actionability</td><td>Low</td><td>Monday</td><td>Needs work</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="c">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="reveal reveal-d1">Questions</h2>
+    <div class="faq-grid reveal reveal-d2">
+      <div class="faq-item">
+        <button class="faq-q"><span>What data access do you need?</span><span class="faq-q__icon">+</span></button>
+        <div class="faq-a"><p>Read-only access to GA4, ad platforms, and CRM. No CRM? We provide a structured brief template.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What happens after Day 15?</span><span class="faq-q__icon">+</span></button>
+        <div class="faq-a"><p>Self-execute with the tracker, hire us for implementation (Catalyst fee credited), or 30-day advisory support.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Is the AI doing all the work?</span><span class="faq-q__icon">+</span></button>
+        <div class="faq-a"><p>AI handles 80–90%. Senior experts validate at two gates with 14 and 17 checkpoint reviews.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What's the guarantee?</span><span class="faq-q__icon">+</span></button>
+        <div class="faq-a"><p>3 data-backed findings you didn't know, each tied to an initiative — or full refund. Can be credited toward implementation instead.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="cta">
+  <div class="c">
+    <div class="section-label reveal">Ready?</div>
+    <h2 class="reveal reveal-d1">Your pipeline<br>has a leak.</h2>
+    <p class="reveal reveal-d2">15 days from now, you'll have a tactical action plan with the first tasks ready for Monday morning.</p>
+    <a href="#" class="btn-primary reveal reveal-d3">Start Your Catalyst →</a>
+    <div class="after-options reveal">
+      <div class="after-opt">
+        <div class="after-opt__label">After Day 15 — A</div>
+        <h3>Self-Execute</h3>
+        <p>Use the Tracker and Deck with your team.</p>
+      </div>
+      <div class="after-opt">
+        <div class="after-opt__label">After Day 15 — B</div>
+        <h3>We Implement</h3>
+        <p>Catalyst fee credited to first invoice.</p>
+      </div>
+      <div class="after-opt">
+        <div class="after-opt__label">After Day 15 — C</div>
+        <h3>Advisory</h3>
+        <p>30-day async check-in + tracker review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="c">
+    <div class="footer__inner">
+      <div class="footer__name">Wonderflow FZ-LLC · Dubai</div>
+      <div class="footer__links">
+        <a href="mailto:alex@wonderflow.agency">alex@wonderflow.agency</a>
+        <a href="https://wonderflow.ae">wonderflow.ae</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const wasActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!wasActive) item.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
