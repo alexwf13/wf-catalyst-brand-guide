@@ -1,0 +1,272 @@
+/* ============================================
+   The Catalyst — Design System v1 — CSS Tokens
+   ============================================
+   Principle: Editorial confidence on warm background.
+   Sharp geometry, disciplined color, premium restraint.
+   Heavy where it matters, quiet everywhere else.
+   ============================================ */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-primary: #FEFAEF;       /* cream — 60-70% of page */
+  --bg-accent: #93D1F7;        /* light blue — 1-2 accent sections */
+  --bg-accent-soft: #C4E8FE;   /* pale blue — secondary accent */
+  --bg-dark: #282828;          /* dark sector — 1-2 sections max */
+  --bg-card: #FFFFFF;          /* cards on dark/colored backgrounds */
+
+  /* ── Brand & Action ── */
+  --color-brand: #198ED5;      /* primary blue */
+  --color-brand-deep: #0265A1; /* deep blue — charts, emphasis */
+  --color-cta: #FCD84D;        /* yellow — CTA ONLY, not decorative */
+
+  /* ── Neutrals ── */
+  --color-black: #000000;      /* headings, borders */
+  --color-dark: #282828;       /* dark backgrounds */
+  --color-mid: #565656;        /* secondary text */
+  --color-muted: #989898;      /* dividers, muted UI */
+  --color-divider: #EBEBEB;    /* light dividers */
+  --color-white: #FFFFFF;
+
+  /* ── Semantic (states only) ── */
+  --color-success: #00B176;
+  --color-error: #FD4E2C;
+  --color-warning: #FCD84D;    /* same as CTA — use contextually */
+
+  /* ── Typography ── */
+  --font-heading: 'Neutro', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* ── Borders — SELECTIVE, not default ── */
+  --border-width: 3px;
+  --border-color: #000000;
+  --border: 3px solid #000000;
+  --border-inverted: 3px solid #FFFFFF;  /* for dark sectors */
+  --divider: 1px solid #989898;
+  --divider-light: 1px solid #EBEBEB;   /* for dark backgrounds */
+
+  /* ── Radius ── */
+  --radius: 0px;               /* everywhere */
+  --radius-pill: 999px;        /* tags, badges, chips only */
+
+  /* ── Shadows — CTA BUTTONS ONLY ── */
+  --shadow-cta: 6px 6px 0px #000000;
+  --shadow-cta-hover: 3px 3px 0px #000000;
+
+  /* ── Spacing (base 8px grid) ── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-section: 120px;      /* vertical padding between sections */
+
+  /* ── Button sizing ── */
+  --btn-padding-v: 18px;
+  --btn-padding-h: 32px;
+  --btn-min-height: 56px;
+}
+
+/* ── Typography Scale ── */
+
+.h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 5vw, 80px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}
+
+.h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-black);
+}
+
+.h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-black);
+}
+
+.h4 {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 1.5vw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-black);
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.4vw, 22px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-mid);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.1vw, 18px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-mid);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 0.9vw, 14px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+}
+
+/* ── Buttons ── */
+
+.btn-primary {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-black);
+  background: var(--color-cta);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-cta);
+  padding: var(--btn-padding-v) var(--btn-padding-h);
+  min-height: var(--btn-min-height);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-cta-hover);
+  transform: translate(3px, 3px);
+}
+
+.btn-secondary {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-black);
+  background: var(--color-white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: none;
+  padding: var(--btn-padding-v) var(--btn-padding-h);
+  min-height: var(--btn-min-height);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-primary);
+}
+
+.btn-ghost {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-black);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.btn-ghost:hover {
+  border-bottom-color: var(--color-black);
+}
+
+/* ── Tags / Badges ── */
+
+.tag {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-black);
+  background: var(--bg-accent-soft);
+  border: var(--border);
+  border-radius: var(--radius-pill);
+  padding: 6px 18px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Section backgrounds ── */
+
+.section--cream {
+  background: var(--bg-primary);
+}
+
+.section--blue {
+  background: var(--bg-accent);
+}
+
+.section--blue-soft {
+  background: var(--bg-accent-soft);
+}
+
+.section--dark {
+  background: var(--bg-dark);
+  color: var(--color-white);
+}
+
+.section--dark .h1,
+.section--dark .h2,
+.section--dark .h3,
+.section--dark .h4 {
+  color: var(--color-white);
+}
+
+.section--dark .body-lg,
+.section--dark .body {
+  color: var(--bg-primary); /* cream text on dark */
+}
+
+.section--dark .section-label {
+  color: var(--bg-accent); /* light blue label on dark */
+}
+
+/* ── Utility: bordered block (selective use) ── */
+
+.bordered {
+  border: var(--border);
+}
+
+.bordered--inverted {
+  border: var(--border-inverted);
+}
